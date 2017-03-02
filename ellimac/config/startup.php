@@ -51,11 +51,9 @@ include(dirname(__FILE__) . "/helper.php");
 
 // setup zend framework and pimcore
 require_once ELLIMAC_PATH . "/lib/Ellimac.php";
+require_once ELLIMAC_PATH . "/lib/Ellimac/Loader/Autoloader.php";
 
 $autoloader = Zend_Loader_Autoloader::getInstance();
 $autoloader->suppressNotFoundWarnings(false);
 $autoloader->setFallbackAutoloader(false);
-$autoloader->registerNamespace('Pimcore');
-
-// generic ellimac setup
-//\Ellimac::initConfiguration();
+$autoloader->registerNamespace('Ellimac');

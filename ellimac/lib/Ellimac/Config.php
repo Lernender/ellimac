@@ -1,24 +1,28 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+/**
+ * Ellimac
+ *
+ * This is a project made by Camille Peter.
+ * Full copyright and license information is available in
+ * LICENSE.md which is distributed with this source code.
+ *
+ * @copyright  Copyright (c) 2017 w-vision | Woche-Pass AG (https://www.w-vision.ch)
+ */
+
+namespace Ellimac;
 
 class Config
 {
     public static function locateConfigFile($name)
     {
-        $filename = ELLIMAC_CONFIGURATION_DIRECTORY . $name;
+        $filename = ELLIMAC_CONFIGURATION_DIRECTORY . "/" . $name;
 
         if (file_exists($filename)) {
-            echo "Die Datei $name existiert!";
-        } else {
-            echo "Die Datei $name existiert nicht!";
+            return true;
         }
+
+        return false;
     }
 
     // TODO: getSystemConfigs method
 }
-
-$config = new Config();
-$config::locateConfigFile('system.php');
-
-//TODO: Config Klasse schreiben
