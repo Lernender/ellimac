@@ -7,12 +7,12 @@ class Router
     /**
      * @var array The route patterns and their handling functions
      */
-    private $afterRoutes = [];
+    private $afterRoutes = array();
 
     /**
      * @var array The before middleware route patterns and their handling functions
      */
-    private $beforeRoutes = [];
+    private $beforeRoutes = array();
 
     /**
      * @var object|callable The function to be executed when no route has been matched
@@ -222,21 +222,25 @@ class Router
     {
         // Define which method we need to handle
         $this->requestedMethod = $this->getRequestMethod();
+
         // Handle all before middlewares
         if (isset($this->beforeRoutes[$this->requestedMethod])) {
             $this->handle($this->beforeRoutes[$this->requestedMethod]);
         }
+
         // Handle all routes
         $numHandled = 0;
         if (isset($this->afterRoutes[$this->requestedMethod])) {
             $numHandled = $this->handle($this->afterRoutes[$this->requestedMethod], true);
         }
+
         // If no route was handled, trigger the 404 (if any)
         if ($numHandled === 0) {
             if ($this->notFoundCallback && is_callable($this->notFoundCallback)) {
                 call_user_func($this->notFoundCallback);
             } else {
                 header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
+                echo '404';
             }
         } // If a route was handled, perform the finish callback (if any)
         else {
@@ -262,6 +266,7 @@ class Router
      */
     public function set404($fn)
     {
+        echo '404';
         $this->notFoundCallback = $fn;
     }
 

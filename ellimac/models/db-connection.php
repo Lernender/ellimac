@@ -1,27 +1,4 @@
 <?php
-
-namespace Ellimac\Model;
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-$user = 'root';
-$password = 'root';
-$dbname = 'project_db';
-$host = 'localhost';
-$port = 3306;
-
-
-$db = new mysqli($host, $user, $password, $dbname);
-
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
-}
-
-
-/**********************************************************************************************************************/
-
 class Db
 {
     /**

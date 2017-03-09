@@ -17,14 +17,14 @@
         <section>
             <div class="uk-container">
                 <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m " uk-grid>
-                    <?php foreach ($projectData as $value): ?>
+<!--                    --><?php //foreach ($projectData as $value): ?>
                         <div>
                             <div class="cp-padding cp-button uk-card uk-card-default uk-card-body uk-card-hover">
                                 <span class="uk-label uk-label-success uk-position-top-right cp-label cp-lable-abgeschlossen">Abgeschlossen</span>
                                 <div class="cp-bold uk-margin-top"><?=$value['name']; ?></div><div><?=$value['url']; ?></div>
                             </div>
                         </div>
-                    <?php endforeach;?>
+<!--                    --><?php //endforeach;?>
                 </div>
             </div>
         </section>

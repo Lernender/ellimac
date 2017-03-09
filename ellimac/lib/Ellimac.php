@@ -16,6 +16,7 @@ class Ellimac
 {
     public static function run()
     {
+
         if (Config::locateConfigFile('system.php')) {
             self::initRouter();
         }
@@ -26,25 +27,24 @@ class Ellimac
         $router = new Router();
 
         $router->mount('/projects', function() use ($router) {
-
             // will result in '/projects/'
             $router->get('/', function() {
-                echo 'projects overview';
+                include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/index-main.php";
             });
 
             // will result in '/projects/new'
             $router->get('/new', function() {
-                echo 'create a new project';
+                include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/new.php";
             });
 
             // will result in '/projects/id'
             $router->get('/(\d+)', function($id) {
-                echo 'project id ' . htmlentities($id);
+                include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/details-main.php";
             });
 
             // will result in '/projects/id/edit'
             $router->get('/(\d+)/edit', function($id) {
-                echo 'edit project id ' . htmlentities($id);
+                include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/edit-main.php";
             });
 
         });

@@ -5,7 +5,7 @@
 
             <div class="uk-navbar-left">
                 <a href="/" class="uk-navbar-item uk-logo">
-                    <img src="static/images/wvision_w.svg" width="75" height="50" uk-svg>
+                    <img src="./website/static/images/wvision_w.svg" width="75" height="50" uk-svg>
                 </a>
             </div>
 
