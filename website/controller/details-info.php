@@ -2,10 +2,11 @@
 
 include_once('../models/db-connection.php');
 
-$client = "SELECT * FROM client ORDER BY cli_name";
+$client = "SELECT * FROM project";
 
-foreach ($db->query($client) as $cli) {
+if ($client->pro_id = $id) {
+    $proName = $client->pro_name;
+    $proURL = $client->pro_url;
+    $cli = "SELECT * FROM client";
 
-    $cliId = $id
-    echo $cli[$cliId]['cli_name'] . ", " . $cli[$cliId]['cli_address'] . ', ' . $cli[$cliId]['cli_zipCode'] . ' ' . $cli[$cliId]['cli_city'] . '<br><br>';
 }

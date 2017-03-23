@@ -13,7 +13,7 @@
                             <div class="cp-bold">Projektname</div>
                         </div>
                         <div class="uk-width-2-3@s">
-                            <input class="cp-text-input uk-button uk-button-small" type="text" name="client" value="Gewerbe Meggen">
+                            <input class="cp-text-input uk-button uk-button-small" type="text" name="client">
                         </div>
 
                         <div class="uk-width-1-6@m uk-margin-top">
@@ -22,7 +22,7 @@
                             <div class="cp-bold">Projektname</div>
                         </div>
                         <div class="uk-width-2-3@m uk-margin-top">
-                            <input class="cp-text-input uk-button uk-button-small" type="text" name="client" value="www.gewerbe-meggen.ch">
+                            <input class="cp-text-input uk-button uk-button-small" type="text" name="client">
                         </div>
 
                         <div class="uk-width-1@m">
@@ -36,7 +36,7 @@
                             <div class="cp-bold">Kunde</div>
                         </div>
                         <div class="uk-width-2-3@m">
-                            <input class="cp-text-input uk-button uk-button-small" type="text" name="client" value="Gewerbe Meggen">
+                            <input class="cp-text-input uk-button uk-button-small" type="text" name="client"">
                         </div>
 
                         <div class="uk-width-1-6@m uk-margin-top">
@@ -46,7 +46,7 @@
                             <div class="cp-bold">Adresse</div>
                         </div>
                         <div class="uk-width-2-3@m uk-margin-top">
-                            <input class="cp-text-input uk-button uk-button-small" type="text" name="client" value="Musterstrasse 185">
+                            <input class="cp-text-input uk-button uk-button-small" type="text" name="client">
                         </div>
 
                         <div class="uk-width-1-6@m uk-margin-top">
@@ -57,8 +57,8 @@
                         </div>
                         <div class="uk-width-2-3@m uk-margin-top">
                             <div uk-grid>
-                                <div class="uk-width-1-3@m "><input class="cp-text-input uk-button uk-button-small" type="text" name="client" value="2000"></div>
-                                <div class="uk-width-2-3@m "><input class="cp-text-input uk-button uk-button-small" type="text" name="client" value="Musterdorf"></div>
+                                <div class="uk-width-1-3@m "><input class="cp-text-input uk-button uk-button-small" type="text" name="client"></div>
+                                <div class="uk-width-2-3@m "><input class="cp-text-input uk-button uk-button-small" type="text" name="client"></div>
                             </div>
                         </div>
 
@@ -102,13 +102,10 @@
 
                 <div class="uk-width-expand">
                     <div class="uk-width-1-1@m">
-                        <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small uk-align-right uk-margin-small-bottom">Speichern</button>
+                        <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small uk-align-right uk-margin-small-bottom">Neues Projekt speichern</button>
                     </div>
                     <div class="uk-width-1-1@m">
                         <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small uk-align-right uk-margin-small-bottom">Abbrechen</button>
-                    </div>
-                    <div class="uk-width-1-1@m">
-                        <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small uk-align-right uk-margin-small-bottoms">Löschen</button>
                     </div>
                 </div>
 

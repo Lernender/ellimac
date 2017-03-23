@@ -9,29 +9,29 @@
                     <div class="uk-width-5-6@m" uk-grid>
 
                         <div class="uk-width-1@m uk-margin-remove-bottom">
-                            <div class="cp-bold cp-blue cp-title"> Gewerbe Meggen<span class="uk-label uk-label-success cp-label uk-margin-remove-top uk-margin-remove-bottom">Abgeschlossen</span></div>
+                            <div class="cp-bold cp-blue cp-title"><?php echo $cliName; ?><span class="uk-label uk-label-success cp-label uk-margin-remove-top uk-margin-remove-bottom">Abgeschlossen</span></div>
                         </div>
                         <div class="uk-width-1@m uk-margin-small-top">
-                            <div style="font-weight: 700"><div style="color: #005fa8"><div style="font-size: 20px">www.gewerbe-meggen.ch</div></div></div>
+                            <h6><?php echo $cliURL; ?></h6>
                         </div>
 
                         <div class="uk-width-1-6@m">
                             <div class="cp-blue cp-bold">Kundeninfo</div>
                         </div>
                         <div class="uk-width-5-6@m">
-                            <div class="cp-bold">Gewerbe Meggen</div>
+                            <div class="cp-bold"><?php echo $cliName; ?></div>
                         </div>
                         <div class="uk-width-1-6@m  uk-margin-top">
                             <div></div>
                         </div>
                         <div class="uk-width-5-6@m  uk-margin-top">
-                            <div class="cp-bold">Musterstrasse 185</div>
+                            <div class="cp-bold"><?php echo $cliAddres; ?></div>
                         </div>
                         <div class="uk-width-1-6@m  uk-margin-top">
                             <div></div>
                         </div>
                         <div class="uk-width-5-6@m  uk-margin-top">
-                            <div class="cp-bold">2000 Musterdorf</div>
+                            <div class="cp-bold"><?php echo $cliZip . $cliCity; ?></div>
                         </div>
 
 
@@ -39,13 +39,13 @@
                             <div class="cp-bold cp-blue"> All. Info</div>
                         </div>
                         <div class="uk-width-5-6@m uk-margin-top-large">
-                            <div class="cp-bold">Kobalt AG</div>
+                            <div class="cp-bold"><?php echo $cliPartner; ?></div>
                         </div>
                         <div class="uk-width-1-6@m uk-margin-top">
                             <div></div>
                         </div>
                         <div class="uk-width-5-6@m uk-margin-top">
-                            <div class="cp-bold">Pimdev</div>
+                            <div class="cp-bold"><?php echo $cliServer; ?></div>
                         </div>
 
                         <div class="uk-width-1-6@m uk-margin-top-large">

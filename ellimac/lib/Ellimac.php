@@ -29,21 +29,25 @@ class Ellimac
         $router->mount('/projects', function() use ($router) {
             // will result in '/projects/'
             $router->get('/', function() {
+                //Dieses Script muss im Layout-Teil "Main" geladen werden.
                 include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/index-main.php";
             });
 
             // will result in '/projects/new'
             $router->get('/new', function() {
-                include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/new.php";
+                //Dieses Script muss im Layout-Teil "Main" geladen werden.
+                include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/new-main.php";
             });
 
             // will result in '/projects/id'
             $router->get('/(\d+)', function($id) {
+                //Dieses Script muss im Layout-Teil "Main" geladen werden.
                 include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/details-main.php";
             });
 
             // will result in '/projects/id/edit'
             $router->get('/(\d+)/edit', function($id) {
+                //Dieses Script muss im Layout-Teil "Main" geladen werden.
                 include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/edit-main.php";
             });
 
