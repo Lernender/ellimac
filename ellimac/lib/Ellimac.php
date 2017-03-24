@@ -11,6 +11,7 @@
 
 use Ellimac\Config;
 use Ellimac\Router;
+use Ellimac\Model\Client;
 
 class Ellimac
 {
@@ -26,28 +27,35 @@ class Ellimac
     {
         $router = new Router();
 
+        //$foo = new Client\ClientModel('foo','','','');
+        //echo $foo;
+
         $router->mount('/projects', function() use ($router) {
             // will result in '/projects/'
             $router->get('/', function() {
-                //Dieses Script muss im Layout-Teil "Main" geladen werden.
+                $this->setRoute([
+                    'controller' => 'blabla',
+                    'action' => 'blabla'
+                 ]);
+                //Dieses Script muss im Layout-Teil "index-main" geladen werden.
                 include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/index-main.php";
             });
 
             // will result in '/projects/new'
             $router->get('/new', function() {
-                //Dieses Script muss im Layout-Teil "Main" geladen werden.
+                //Dieses Script muss im Layout-Teil "new-main" geladen werden.
                 include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/new-main.php";
             });
 
             // will result in '/projects/id'
             $router->get('/(\d+)', function($id) {
-                //Dieses Script muss im Layout-Teil "Main" geladen werden.
+                //Dieses Script muss im Layout-Teil "details-main" geladen werden.
                 include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/details-main.php";
             });
 
             // will result in '/projects/id/edit'
             $router->get('/(\d+)/edit', function($id) {
-                //Dieses Script muss im Layout-Teil "Main" geladen werden.
+                //Dieses Script muss im Layout-Teil "edit-main" geladen werden.
                 include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/edit-main.php";
             });
 

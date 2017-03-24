@@ -8,6 +8,7 @@
     <?php include_once('partials/header.php'); ?>
 
     <main class="main-content" uk-height-viewport="expand: true">
+        <!-- TODO: View hier reinladen -->
         <!--Script, welches vom Ellimac.php verlangt wird.-->
     </main>
 

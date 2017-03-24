@@ -17,11 +17,14 @@
         <section>
             <div class="uk-container">
                 <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m " uk-grid>
-                    <?php foreach ($projectData as $value): ?>
+                    <?php// include_once('../controller/projects.php'); ?>
+                    <?php var_dump($projectData);die; ?>
+                    <?php foreach ($projectData as $project): ?>
                         <div>
                             <div class="cp-padding cp-button uk-card uk-card-default uk-card-body uk-card-hover">
+                                <!--Status/Label aus DB importieren-->
                                 <span class="uk-label uk-label-success uk-position-top-right cp-label cp-lable-abgeschlossen">Abgeschlossen</span>
-                                <div class="cp-bold uk-margin-top"><?=$value['name']; ?></div><div><?=$value['url']; ?></div>
+                                <div class="cp-bold uk-margin-top"><?=$project['name']; ?></div><div><?=$project['url']; ?></div>
                             </div>
                         </div>
                     <?php endforeach;?>

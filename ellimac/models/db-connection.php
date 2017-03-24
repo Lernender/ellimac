@@ -1,4 +1,7 @@
 <?php
+
+include_once ('../../webseite/var/config/system.php');
+
 class Db
 {
     /**

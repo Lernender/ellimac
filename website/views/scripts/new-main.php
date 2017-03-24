@@ -75,11 +75,9 @@
                         <div class="uk-width-2-3@m">
                             <select class="uk-select cp-select">
                                 <option>bitte wählen</option>
-                                <option>Kobalt</option>
-                                <option>Woche-Pass</option>
-                                <option>Dä</option>
-                                <option>Die</option>
-                                <option>Desi</option>
+                                <?php foreach ($partnerData): ?>
+                                    <option><?=$partnerData; ?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
 
@@ -91,9 +89,9 @@
                         <div class="uk-width-2-3@m uk-margin-top">
                             <select class="uk-select cp-select">
                                 <option>bitte wählen</option>
-                                <option>Pimdev</option>
-                                <option>Re</option>
-                                <option>Cheops</option>
+                                <?php foreach ($serverData): ?>
+                                    <option><?=$serverDate; ?></option>
+                                <?php endforeach;?>
                             </select>
 
                         </div>
