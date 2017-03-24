@@ -19,7 +19,7 @@ class PartnerModel
 
     /**
      * PartnerModel constructor.
-     * @param $name
+     * @param name from partner
      */
     public function __construct($name)
     {
@@ -27,7 +27,7 @@ class PartnerModel
     }
 
     /**
-     * @return mixed
+     * @return name from partner
      */
     public function getName()
     {
@@ -35,10 +35,12 @@ class PartnerModel
     }
 
     /**
-     * @param mixed $name
+     * @param set name from partner
      */
     public function setName($name)
     {
         $this->name = $name;
     }
 }
+
+//TODO: Model fertig stellen

@@ -27,6 +27,8 @@ class Ellimac
     {
         $router = new Router();
 
+        //TODO: MVC
+
         //$foo = new Client\ClientModel('foo','','','');
         //echo $foo;
 

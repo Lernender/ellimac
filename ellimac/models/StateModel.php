@@ -19,7 +19,7 @@ class StateModel
 
     /**
      * StateModel constructor.
-     * @param $name
+     * @param $name from state
      */
     public function __construct($name)
     {
@@ -27,7 +27,7 @@ class StateModel
     }
 
     /**
-     * @return mixed
+     * @return name from state
      */
     public function getName()
     {
@@ -35,10 +35,12 @@ class StateModel
     }
 
     /**
-     * @param mixed $name
+     * @param set name from state
      */
     public function setName($name)
     {
         $this->name = $name;
     }
 }
+
+//TODO: Model fertig stellen

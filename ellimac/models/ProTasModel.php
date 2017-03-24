@@ -19,7 +19,7 @@ class ProTasModel
 
     /**
      * ProTasModel constructor.
-     * @param $state
+     * @param state from task of project
      */
     public function __construct($state)
     {
@@ -27,7 +27,7 @@ class ProTasModel
     }
 
     /**
-     * @return mixed
+     * @return state from task of project
      */
     public function getState()
     {
@@ -35,10 +35,12 @@ class ProTasModel
     }
 
     /**
-     * @param mixed $state
+     * @param set state from task of project
      */
     public function setState($state)
     {
         $this->state = $state;
     }
 }
+
+//TODO: Model fertig stellen

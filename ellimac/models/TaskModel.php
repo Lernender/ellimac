@@ -17,8 +17,8 @@ class TaskModel
 
     /**
      * TaskModel constructor.
-     * @param $title
-     * @param $description
+     * @param $title from task
+     * @param $description from task
      */
     public function __construct($title, $description)
     {
@@ -27,7 +27,7 @@ class TaskModel
     }
 
     /**
-     * @return mixed
+     * @return title from task
      */
     public function getTitle()
     {
@@ -35,7 +35,7 @@ class TaskModel
     }
 
     /**
-     * @param mixed $title
+     * @param set title from task
      */
     public function setTitle($title)
     {
@@ -43,7 +43,7 @@ class TaskModel
     }
 
     /**
-     * @return mixed
+     * @return description from task
      */
     public function getDescription()
     {
@@ -51,10 +51,12 @@ class TaskModel
     }
 
     /**
-     * @param mixed $description
+     * @param set description from task
      */
     public function setDescription($description)
     {
         $this->description = $description;
     }
 }
+
+//TODO: Model fertig stellen

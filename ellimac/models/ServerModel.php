@@ -19,8 +19,8 @@ class ServerModel
 
     /**
      * ServerModel constructor.
-     * @param $name
-     * @param $ip
+     * @param $name from server
+     * @param $ip from server
      */
     public function __construct($name, $ip)
     {
@@ -29,7 +29,7 @@ class ServerModel
     }
 
     /**
-     * @return mixed
+     * @return name from server
      */
     public function getName()
     {
@@ -37,7 +37,7 @@ class ServerModel
     }
 
     /**
-     * @param mixed $name
+     * @param set name from server
      */
     public function setName($name)
     {
@@ -45,7 +45,7 @@ class ServerModel
     }
 
     /**
-     * @return mixed
+     * @return ip from server
      */
     public function getIp()
     {
@@ -53,10 +53,12 @@ class ServerModel
     }
 
     /**
-     * @param mixed $ip
+     * @param set ip from server
      */
     public function setIp($ip)
     {
         $this->ip = $ip;
     }
 }
+
+//TODO: Model fertig stellen

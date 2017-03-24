@@ -21,10 +21,10 @@ class ClientModel
 
     /**
      * ClientModel constructor.
-     * @param $name
-     * @param $address
-     * @param $code
-     * @param $city
+     * @param $name from client
+     * @param $address from client
+     * @param $code from client
+     * @param $city from client
      */
     public function __construct($name, $address, $code, $city)
     {
@@ -35,7 +35,7 @@ class ClientModel
     }
 
     /**
-     * @return mixed
+     * @return name from client
      */
     public function getName()
     {
@@ -43,7 +43,7 @@ class ClientModel
     }
 
     /**
-     * @param $name
+     * @param set name from client
      */
     public function setName($name)
     {
@@ -51,7 +51,7 @@ class ClientModel
     }
 
     /**
-     * @return mixed
+     * @return adress from client
      */
     public function getAddress()
     {
@@ -59,7 +59,7 @@ class ClientModel
     }
 
     /**
-     * @param mixed $address
+     * @param set address from client
      */
     public function setAddress($address)
     {
@@ -67,7 +67,7 @@ class ClientModel
     }
 
     /**
-     * @return mixed
+     * @return zipCode from client
      */
     public function getZipCode()
     {
@@ -75,7 +75,7 @@ class ClientModel
     }
 
     /**
-     * @param mixed $zipCode
+     * @param set zipCode from client
      */
     public function setZipCode($zipCode)
     {
@@ -83,7 +83,7 @@ class ClientModel
     }
 
     /**
-     * @return mixed
+     * @return city of client
      */
     public function getCity()
     {
@@ -91,7 +91,7 @@ class ClientModel
     }
 
     /**
-     * @param mixed $city
+     * @param set city from client
      */
     public function setCity($city)
     {
@@ -105,5 +105,5 @@ class ClientModel
        return 'foofoo';
     }
 
-    //TODO: Heute Nachmittag, Model für Client Klasse schreiben
 }
+//TODO: Model fertig stellen
