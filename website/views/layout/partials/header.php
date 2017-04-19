@@ -9,6 +9,7 @@
                 </a>
             </div>
 
+            <!--TODO:  Titel anpassen, je nach dem welches View geladen wird-->
             <div class="uk-navbar-center uk-light">
                 <h1>Projekt-Übersicht</h1>
             </div>

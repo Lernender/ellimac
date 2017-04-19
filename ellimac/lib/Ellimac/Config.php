@@ -25,4 +25,12 @@ class Config
     }
 
     // TODO: getSystemConfigs method
+
+    public static function getSystemConfig()
+    {
+
+    }
+
 }
+
+https://github.com/pimcore/pimcore/blob/master/pimcore/lib/Pimcore/Config.php

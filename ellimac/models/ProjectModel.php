@@ -17,16 +17,18 @@ class ProjectModel
 {
     private $name;
     private $url;
+    private $sta;
 
     /**
      * ProjectModel constructor.
      * @param $name from project
      * @param $url from project
      */
-    public function __construct($name, $url)
+    public function __construct($name, $url, $sta)
     {
         $this->name = $name;
         $this->url = $url;
+        $this->sta = $sta
     }
 
     /**
@@ -60,6 +62,20 @@ class ProjectModel
     {
         $this->url = $url;
     }
+
+    /**
+     * @return stade from project
+     */
+    public function getSta()
+    {
+        return $this->sta;
+    }
+
+    public function setSta($sta)
+    {
+        $this->sta = $sta;
+    }
+
 }
 
 //TODO: Model fertig stellen

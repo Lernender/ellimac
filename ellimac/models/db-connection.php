@@ -30,8 +30,8 @@ class Db
     }
 
     /**
-     * @param
-     * @return
+     * @param a query
+     * @return result from query
      */
     public function query($query)
     {
@@ -42,7 +42,7 @@ class Db
     }
 
     /**
-     * @param
+     * @param a query
      * @return a array with my query
      */
     public function select($query)
@@ -59,7 +59,7 @@ class Db
     }
 
     /**
-     * @return
+     * @return connection went wrong -> error
      */
     public function error()
     {
@@ -68,8 +68,8 @@ class Db
     }
 
     /**
-     * @param
-     * @return
+     * @param value
+     * @return connection with value
      */
     public function quote($value)
     {
