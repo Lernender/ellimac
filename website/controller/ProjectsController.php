@@ -35,7 +35,7 @@ class ProjectsController
         // Logik für Projekt-Detail
 
         // 1. Befehl: Hole mir alle Projekt-Daten
-        $detail = 'SELECT pro_name, pro_url, ser_id, cli_id, par_id, sta_id FROM project WHERE pro_id = ' . $id ;
+        $detail = 'SELECT pro_name, pro_url, ser_id, cli_id, par_id, sta_id FROM project WHERE pro_id=' . $id;
         echo $detail;
         // 2. Befehl: Übergeben diese Daten dem View
     }
@@ -45,7 +45,7 @@ class ProjectsController
         // Logik für Projekt bearbeiten
 
         // 1. Befehl: Hole mir alle Projekt-Daten
-        $edit = 'SELECT pro_name, pro_url, ser_id, cli_id, par_id, sta_id FROM project WHERE pro_id = ' . $id;
+        $edit = 'SELECT pro_name, pro_url, ser_id, cli_id, par_id, sta_id FROM project WHERE pro_id=' . $id;
         echo $edit;
 
         // 2. Befehl: Übergeben diese Daten dem View

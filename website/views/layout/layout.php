@@ -9,6 +9,7 @@
 
     <main class="main-content" uk-height-viewport="expand: true">
         <!-- TODO: View hier reinladen -->
+        <?php initRouter(); ?>
         <!--Script, welches vom Ellimac.php verlangt wird.-->
     </main>
 

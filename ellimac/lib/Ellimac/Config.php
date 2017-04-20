@@ -28,9 +28,24 @@ class Config
 
     public static function getSystemConfig()
     {
+        $config = null;
+
+        self::locateConfigFile('system.php');
+        try {
+            if (!defined('ELLIMAC_CONFIGURATION_FILE')) {
+                define('ELLIMAC_CONFIGURATION_FILE', $filename);
+            } if (file_exists($filename)) {
+
+            } else {
+
+            }
+        }
+
+    }
+
+    public static function setSystemConfig()
+    {
 
     }
 
 }
-
-https://github.com/pimcore/pimcore/blob/master/pimcore/lib/Pimcore/Config.php
