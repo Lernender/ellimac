@@ -18,34 +18,30 @@ class Config
         $filename = ELLIMAC_CONFIGURATION_DIRECTORY . "/" . $name;
 
         if (file_exists($filename)) {
-            return true;
+            return $filename;
         }
 
         return false;
     }
 
-    // TODO: getSystemConfigs method
-
     public static function getSystemConfig()
     {
         $config = null;
 
-        self::locateConfigFile('system.php');
+        $file = self::locateConfigFile('system.php');
         try {
-            if (!defined('ELLIMAC_CONFIGURATION_FILE')) {
-                define('ELLIMAC_CONFIGURATION_FILE', $filename);
-            } if (file_exists($filename)) {
-
+            if (file_exists($file)) {
+                $config = new \Ellimac\Config\Config(include($file));
             } else {
-
+                throw new \Exception($file . " existiert nicht.");
             }
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            throw new \Exception($e);
         }
 
-    }
-
-    public static function setSystemConfig()
-    {
+        return $config;
 
     }
 
-}
+ }

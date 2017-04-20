@@ -9,29 +9,33 @@
  * @copyright  Copyright (c) 2017 w-vision | Woche-Pass AG (https://www.w-vision.ch)
  */
 
+use Ellimac\Config;
+
 class Db
 {
+    /**
+     * @var
+     */
     protected $connection;
 
-    /**
-     * @return the DB
-     */
     public function dbConnect()
     {
-        if (!isset(self::$connection)) {
-            include_once('../../webseite/var/config/system.php');
-            self::$connection = new mysqli($config ['host'], $config ['user'], $config ['password'], $config ['dbbname']);
+        $config = Config::getSystemConfig();
+
+        if (!isset($this->connection)) {
+            $this->connection = new mysqli($config->database->get('host'), $config->database->get('user'), $config->database->get('password'), $config->database->get('dbname'));
         }
 
-        if (self::$connection === false) {
+        if ($this->connection === false) {
             return mysqli_errno();
         }
-        return self::$connection;
+
+        return $this->connection;
     }
 
     /**
-     * @param a query
-     * @return result from query
+     * @param $query
+     * @return bool|mysqli_result
      */
     public function query($query)
     {
@@ -42,8 +46,8 @@ class Db
     }
 
     /**
-     * @param a query
-     * @return a array with my query
+     * @param $query
+     * @return array|bool
      */
     public function select($query)
     {
@@ -59,7 +63,7 @@ class Db
     }
 
     /**
-     * @return connection went wrong -> error
+     * @return string
      */
     public function error()
     {
@@ -68,8 +72,8 @@ class Db
     }
 
     /**
-     * @param value
-     * @return connection with value
+     * @param $value
+     * @return string
      */
     public function quote($value)
     {
@@ -77,6 +81,11 @@ class Db
         return "'" . $connection->real_escape_string($value) . "'";
     }
 
+    /**
+     * @param $table
+     * @param $id
+     * @return bool|mysqli_result
+     */
     public function delete($table, $id)
     {
         $query = 'DELETE FROM' . ' ' . $table . ' ' . 'WHERE id=' . $id;

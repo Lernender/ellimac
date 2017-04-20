@@ -53,7 +53,7 @@ include(dirname(__FILE__) . "/helper.php");
 require_once ELLIMAC_PATH . "/lib/Ellimac.php";
 require_once ELLIMAC_PATH . "/lib/Ellimac/Loader/Autoloader.php";
 
-$autoloader = Zend_Loader_Autoloader::getInstance();
+$autoloader = \Zend_Loader_Autoloader::getInstance();
 $autoloader->suppressNotFoundWarnings(false);
 $autoloader->setFallbackAutoloader(false);
 $autoloader->registerNamespace('Ellimac');

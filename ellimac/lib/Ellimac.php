@@ -11,13 +11,12 @@
 
 use Ellimac\Config;
 use Ellimac\Router;
-use Ellimac\Model\Client;
+use Ellimac\Controller;
 
 class Ellimac
 {
     public static function run()
     {
-
         if (Config::locateConfigFile('system.php')) {
             self::initRouter();
         }
@@ -27,43 +26,49 @@ class Ellimac
     {
         $router = new Router();
 
-        //TODO: MVC
+        $controller = new Controller();
 
-        //$foo = new Client\ClientModel('foo','','','');
-        //echo $foo;
+        //TODO: Add a route handler here (Ellimac -> Controller)
 
         $router->mount('/projects', function() use ($router) {
             // will result in '/projects/'
             $router->get('/', function() {
-                $this->setRoute([
-                    'controller' => 'blabla',
-                    'action' => 'blabla'
-                 ]);
-                //Dieses Script muss im Layout-Teil "index-main" geladen werden.
-                include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/index-main.php";
+                //TODO: Fill in the needed parameters
+//                self::setRoute([
+//                    'controller' => 'projects',
+//                    'action' => 'list'
+//                ]);
             });
 
             // will result in '/projects/new'
             $router->get('/new', function() {
-                //Dieses Script muss im Layout-Teil "new-main" geladen werden.
-                include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/new-main.php";
+//                self::setRoute([
+//                    'controller' => 'projects',
+//                    'action' => 'add'
+//                ]);
             });
 
             // will result in '/projects/id'
             $router->get('/(\d+)', function($id) {
-                //Dieses Script muss im Layout-Teil "details-main" geladen werden.
-                include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/details-main.php";
+//                self::setRoute([
+//                    'controller' => 'projects',
+//                    'action' => 'detail'
+//                ]);
             });
 
             // will result in '/projects/id/edit'
             $router->get('/(\d+)/edit', function($id) {
-                //Dieses Script muss im Layout-Teil "edit-main" geladen werden.
-                include_once ELLIMAC_WEBSITE_PATH . "/views/scripts/edit-main.php";
+//                self::setRoute([
+//                    'controller' => 'projects',
+//                    'action' => 'edit'
+//                ]);
             });
 
         });
 
-        $router->run();
+        $router->run(function() {
+            //TODO: Run the route handler
+        });
     }
 }
 

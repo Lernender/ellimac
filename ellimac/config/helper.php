@@ -10,3 +10,14 @@
  */
 
 // TODO: Helper hinzufügen falls nötig
+
+/**
+ * @param  $var
+ * @return void
+ */
+function p_r($var)
+{
+    echo "<pre><code>";
+    print_r($var);
+    echo "</code></pre>";
+}
