@@ -9,6 +9,8 @@
  * @copyright  Copyright (c) 2017 w-vision | Woche-Pass AG (https://www.w-vision.ch)
  */
 
+namespace DbConnection;
+
 use Ellimac\Config;
 
 class Db

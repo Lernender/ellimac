@@ -8,6 +8,7 @@
  *
  * @copyright  Copyright (c) 2017 w-vision | Woche-Pass AG (https://www.w-vision.ch)
  */
+namespace Ellimac;
 
 use Ellimac\Config;
 use Ellimac\Router;
@@ -22,11 +23,11 @@ class Ellimac
         }
     }
 
-    protected static function initRouter()
+    public function initRouter()
     {
         $router = new Router();
 
-        $controller = new Controller();
+       // $controller = new Controller();
 
         //TODO: Add a route handler here (Ellimac -> Controller)
 

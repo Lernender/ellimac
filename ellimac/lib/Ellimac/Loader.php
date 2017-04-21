@@ -57,7 +57,7 @@ class Zend_Loader
 
         if ((null !== $dirs) && !is_string($dirs) && !is_array($dirs)) {
             //require_once 'Zend/Exception.php';
-            throw new Zend_Exception('Directory argument must be a string or an array');
+            throw new \Exception('Directory argument must be a string or an array');
         }
 
         $file = self::standardiseFile($class);
@@ -84,7 +84,7 @@ class Zend_Loader
 
         if (!class_exists($class, false) && !interface_exists($class, false)) {
             //require_once 'Zend/Exception.php';
-            throw new Zend_Exception("File \"$file\" does not exist or class \"$class\" was not found in the file");
+            throw new \Exception("File \"$file\" does not exist or class \"$class\" was not found in the file");
         }
     }
 

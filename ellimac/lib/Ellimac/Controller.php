@@ -10,6 +10,8 @@
  */
 
 namespace Ellimac;
+use Ellimac\Model\ProjectController;
+use Ellimac;
 
 class Controller extends \Zend_Controller_Action
 {
@@ -118,5 +120,16 @@ class Controller extends \Zend_Controller_Action
         if ($this->hasParam("_segment")) {
             $this->_helper->viewRenderer->setResponseSegment($this->getParam("_segment"));
         }
+    }
+
+    public function setRoute()
+    {
+        $project = new ProjectController->ProjectController;
+
+        $route[][] = array('controller' => $this->project, 'list' => Controller\ProjectsController::listAction());
+        $route[][] .= array('controller' => ProjectController\ProjectsController::class, 'add' => ProjectController\ProjectsController::addAction());
+        $route[][] .= array('controller' => ProjectController\ProjectsController::class, 'detail' => ProjectController\ProjectsController::detailAction());
+        $route[][] .= array('controller' => ProjectController\ProjectsController::class, 'edit' => ProjectController\ProjectsController::editAction());
+
     }
 }
