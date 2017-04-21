@@ -1,5 +1,5 @@
 <?php
-namespace Ellimac\Model\ProjectController;
+namespace ProjectController;
 
 use Ellimac\Controller;
 use DbConnection;

@@ -10,7 +10,7 @@
  */
 
 namespace Ellimac;
-use Ellimac\Model\ProjectController;
+use ProjectController;
 use Ellimac;
 
 class Controller extends \Zend_Controller_Action
@@ -124,7 +124,7 @@ class Controller extends \Zend_Controller_Action
 
     public function setRoute()
     {
-        $project = new ProjectController->ProjectController;
+        $project = new ProjectsController;
 
         $route[][] = array('controller' => $this->project, 'list' => Controller\ProjectsController::listAction());
         $route[][] .= array('controller' => ProjectController\ProjectsController::class, 'add' => ProjectController\ProjectsController::addAction());
