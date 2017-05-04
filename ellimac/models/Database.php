@@ -24,6 +24,8 @@ class Database
     {
         $config = Config::getSystemConfig();
 
+        // TODO: Datenbankabfrage in einem anderen File ausführen
+
         if (!isset($this->connection)) {
             $this->connection = new mysqli($config->database->host, $config->database->user, $config->database->password, $config->database->dbname);
         }

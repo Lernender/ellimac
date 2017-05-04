@@ -34,8 +34,8 @@ class Ellimac
         $router->mount('/projects', function() use ($router) {
             // will result in '/projects/'
             $router->get('/', function() {
-                $db = new Database();
-                echo $db->dbConnect();
+//                $db = new Database();
+//                echo $db->dbConnect();
                 //TODO: Fill in the needed parameters
 //                self::setRoute([
 //                    'controller' => 'projects',
