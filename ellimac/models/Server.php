@@ -9,25 +9,27 @@
  * @copyright  Copyright (c) 2017 w-vision | Woche-Pass AG (https://www.w-vision.ch)
  */
 
+namespace Ellimac\Model;
 
-namespace Ellimac\Model\State;
 
-
-class StateModel
+class Server
 {
     private $name;
+    private $ip;
 
     /**
-     * StateModel constructor.
-     * @param $name from state
+     * ServerModel constructor.
+     * @param $name from server
+     * @param $ip from server
      */
-    public function __construct($name)
+    public function __construct($name, $ip)
     {
         $this->name = $name;
+        $this->ip = $ip;
     }
 
     /**
-     * @return name from state
+     * @return name from server
      */
     public function getName()
     {
@@ -35,11 +37,27 @@ class StateModel
     }
 
     /**
-     * @param set name from state
+     * @param set name from server
      */
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return ip from server
+     */
+    public function getIp()
+    {
+        return $this->ip;
+    }
+
+    /**
+     * @param set ip from server
+     */
+    public function setIp($ip)
+    {
+        $this->ip = $ip;
     }
 }
 

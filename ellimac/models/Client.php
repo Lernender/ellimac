@@ -9,10 +9,10 @@
  * @copyright  Copyright (c) 2017 w-vision | Woche-Pass AG (https://www.w-vision.ch)
  */
 
-namespace Ellimac\Model\Client;
+namespace Ellimac\Model;
 
 
-class ClientModel
+class Client
 {
     private $name;
     private $address;

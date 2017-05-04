@@ -6,10 +6,10 @@
  * Time: 14:33
  */
 
-namespace Ellimac\Model\Task;
+namespace Ellimac\Model;
 
 
-class TaskModel
+class Task
 {
     private $title;
     private $description;

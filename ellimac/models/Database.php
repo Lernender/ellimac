@@ -9,11 +9,11 @@
  * @copyright  Copyright (c) 2017 w-vision | Woche-Pass AG (https://www.w-vision.ch)
  */
 
-namespace DbConnection;
+namespace Ellimac\Model;
 
 use Ellimac\Config;
 
-class Db
+class Database
 {
     /**
      * @var
@@ -25,7 +25,7 @@ class Db
         $config = Config::getSystemConfig();
 
         if (!isset($this->connection)) {
-            $this->connection = new mysqli($config->database->get('host'), $config->database->get('user'), $config->database->get('password'), $config->database->get('dbname'));
+            $this->connection = new mysqli($config->database->host, $config->database->user, $config->database->password, $config->database->dbname);
         }
 
         if ($this->connection === false) {
@@ -53,14 +53,17 @@ class Db
      */
     public function select($query)
     {
-        $rows = array();
+        $rows = [];
         $result = $this->query($query);
+
         if ($result === false) {
             return false;
         }
+
         while ($row = $result->fetch_assoc()) {
             $rows[] = $row;
         }
+
         return $rows;
     }
 

@@ -1,0 +1,22 @@
+{
+    "name": "w-vision/ellimac",
+    "description": "Displays a list of projects",
+    "type": "project",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Camille Peter",
+            "email": "c.peter@woche-pass.ch",
+            "homepage": "https://www.w-vision.ch/",
+            "role": "Developer"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Ellimac\\Model\\": "ellimac/models",
+            "Ellimac\\": "ellimac/lib/Ellimac",
+            "Website\\": "website/lib/Website"
+        }
+    }
+}

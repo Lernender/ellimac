@@ -8,22 +8,22 @@
  *
  * @copyright  Copyright (c) 2017 w-vision | Woche-Pass AG (https://www.w-vision.ch)
  */
-namespace Ellimac;
 
 use Ellimac\Config;
 use Ellimac\Router;
-use Ellimac\Controller;
+use Ellimac\Model\Database;
 
 class Ellimac
 {
     public static function run()
     {
         if (Config::locateConfigFile('system.php')) {
+//            Config::getSystemConfig();
             self::initRouter();
         }
     }
 
-    public function initRouter()
+    public static function initRouter()
     {
         $router = new Router();
 
@@ -34,6 +34,8 @@ class Ellimac
         $router->mount('/projects', function() use ($router) {
             // will result in '/projects/'
             $router->get('/', function() {
+                $db = new Database();
+                echo $db->dbConnect();
                 //TODO: Fill in the needed parameters
 //                self::setRoute([
 //                    'controller' => 'projects',

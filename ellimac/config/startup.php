@@ -49,11 +49,20 @@ set_include_path(implode(PATH_SEPARATOR, $includePaths) . PATH_SEPARATOR);
 // helper functions
 include(dirname(__FILE__) . "/helper.php");
 
-// setup zend framework and pimcore
+// setup zend framework and ellimac
 require_once ELLIMAC_PATH . "/lib/Ellimac.php";
 require_once ELLIMAC_PATH . "/lib/Ellimac/Loader/Autoloader.php";
+$loader = require ELLIMAC_DOCUMENT_ROOT . "/vendor/autoload.php";
 
 $autoloader = \Zend_Loader_Autoloader::getInstance();
 $autoloader->suppressNotFoundWarnings(false);
 $autoloader->setFallbackAutoloader(false);
 $autoloader->registerNamespace('Ellimac');
+
+$loader->unregister();
+$loader->register(true);
+
+$compatibilityClassLoader = new \Ellimac\Loader\CompatibilityAutoloader($loader);
+$compatibilityClassLoader->register(true);
+
+

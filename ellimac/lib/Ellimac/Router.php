@@ -354,6 +354,7 @@ class Router
         if (null === $this->serverBasePath) {
             $this->serverBasePath = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
         }
+
         return $this->serverBasePath;
     }
 }

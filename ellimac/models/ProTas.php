@@ -10,10 +10,10 @@
  */
 
 
-namespace Ellimac\Model\ProTas;
+namespace Ellimac\Model;
 
 
-class ProTasModel
+class ProTas
 {
     private $state;
 
