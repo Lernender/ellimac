@@ -11,7 +11,6 @@
 
 use Ellimac\Config;
 use Ellimac\Router;
-use Ellimac\Model\Database;
 
 class Ellimac
 {
@@ -27,20 +26,16 @@ class Ellimac
     {
         $router = new Router();
 
-       // $controller = new Controller();
-
         //TODO: Add a route handler here (Ellimac -> Controller)
 
         $router->mount('/projects', function() use ($router) {
             // will result in '/projects/'
             $router->get('/', function() {
-//                $db = new Database();
-//                echo $db->dbConnect();
                 //TODO: Fill in the needed parameters
-//                self::setRoute([
-//                    'controller' => 'projects',
-//                    'action' => 'list'
-//                ]);
+                \Ellimac\Controller::setRoute([
+                    'controller' => 'projects',
+                    'action' => 'list'
+                ]);
             });
 
             // will result in '/projects/new'

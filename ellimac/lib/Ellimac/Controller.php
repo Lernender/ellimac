@@ -13,7 +13,9 @@ namespace Ellimac;
 
 use Website\Controller\ProjectsController;
 
-class Controller extends \Zend_Controller_Action
+// TODO: Implement Zend_Controller_Action
+//class Controller extends \Zend_Controller_Action
+class Controller
 {
     /**
      * @throws \Zend_Controller_Response_Exception
@@ -122,17 +124,11 @@ class Controller extends \Zend_Controller_Action
         }
     }
 
-    public function setRoute()
+    public static function setRoute($route)
     {
-        $project = new ProjectsController();
+        $controller = ucfirst($route['controller']) . 'Controller';
+        $project = new $controller();
 
-        $route[][] = ['controller' => $project, 'list' => $project->listAction()];
-        $route[][] .= ['controller' => $project, 'add' => $project->addAction()];
-        $route[][] .= ['controller' => $project, 'detail' => $project->detailAction()];
-        $route[][] .= ['controller' => $project, 'edit' => $project->editAction()];
-
-        $route['controller'] = ['list' => $project->listAction(), $project, 'add' => $project->addAction(), $project, 'detail' => $project->detailAction(), $project, 'edit' => $project->editAction()];
-
-
+        p_r($project);die;
     }
 }

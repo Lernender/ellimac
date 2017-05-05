@@ -11,7 +11,7 @@
 
 namespace Ellimac\Loader;
 
-//use Ellimac\Tool;
+use Ellimac\Tool;
 
 use Website\Controller\ProjectsController;
 

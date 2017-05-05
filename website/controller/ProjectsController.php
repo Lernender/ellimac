@@ -11,14 +11,13 @@ class ProjectsController extends Controller
     //TODO: Projekt-Controller schreiben
     public function listAction()
     {
-        $db = new Database();
-
         // Logik für Projekt-Liste
 
         // 1. Befehl: Hole mir alle Projekte (Liste) vom Model
         $list = 'SELECT pro_name, pro_url, sta_id FROM project';
 
         // 2. Befehl: Übergebe alle Projekte ans View
+        $db = new Database();
         $getList = $db->select($list);
         return $getList;
     }
