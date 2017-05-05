@@ -64,8 +64,3 @@ $loader->register(true);
 
 $compatibilityClassLoader = new \Ellimac\Loader\CompatibilityAutoloader($loader);
 $compatibilityClassLoader->register(true);
-
-//p_r($loader);die;
-
-
-

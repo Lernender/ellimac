@@ -119,7 +119,7 @@ class CompatibilityAutoloader
                 }
             }
         }
-        p_r($class);die;
+//        p_r($class);die;
     }
     /**
      * Registers this instance as an autoloader.

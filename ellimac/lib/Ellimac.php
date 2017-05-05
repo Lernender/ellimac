@@ -32,7 +32,8 @@ class Ellimac
             // will result in '/projects/'
             $router->get('/', function() {
                 //TODO: Fill in the needed parameters
-                \Ellimac\Controller::setRoute([
+                $controller = new \Ellimac\Controller();
+                $controller->setRoute([
                     'controller' => 'projects',
                     'action' => 'list'
                 ]);
@@ -40,10 +41,11 @@ class Ellimac
 
             // will result in '/projects/new'
             $router->get('/new', function() {
-//                self::setRoute([
-//                    'controller' => 'projects',
-//                    'action' => 'add'
-//                ]);
+                $controller = new \Ellimac\Controller();
+                $controller->setRoute([
+                    'controller' => 'projects',
+                    'action' => 'new'
+                ]);
             });
 
             // will result in '/projects/id'

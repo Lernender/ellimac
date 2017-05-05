@@ -9,8 +9,9 @@ class ProjectsController extends Controller
 {
 
     //TODO: Projekt-Controller schreiben
-    public function listAction()
+    public static function listAction()
     {
+        echo 'Hallo';
         // Logik für Projekt-Liste
 
         // 1. Befehl: Hole mir alle Projekte (Liste) vom Model
