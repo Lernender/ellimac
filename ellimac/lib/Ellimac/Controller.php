@@ -11,10 +11,13 @@
 
 namespace Ellimac;
 
-//use Website\Controller\ProjectsController;
+//use \Website\Controller\ProjectsController;
 
 // TODO: Implement Zend_Controller_Action
+
 //class Controller extends \Zend_Controller_Action
+use Website\Controller\ProjectsController;
+
 class Controller
 {
 //    protected $controller = 'projects';
@@ -37,7 +40,6 @@ class Controller
 //        }
 //    }
 
-
 //    /**
 //     * @throws \Zend_Controller_Response_Exception
 //     */
@@ -50,6 +52,7 @@ class Controller
 //            $this->getResponse()->setHeader("Content-Type", "text/html; charset=UTF-8", true);
 //        }
 //    }
+
 //    /**
 //     * @throws \Zend_Controller_Response_Exception
 //     */
@@ -63,6 +66,7 @@ class Controller
 //            $this->getResponse()->setHeader("Expires", "Tue, 01 Jan 1980 00:00:00 GMT", true);
 //        }
 //    }
+
 //    /**
 //     *
 //     */
@@ -71,6 +75,7 @@ class Controller
 //        \Zend_Controller_Action_HelperBroker::removeHelper('viewRenderer');
 //        $this->viewEnabled = false;
 //    }
+
 //    /**
 //     * @return null|\Zend_Layout
 //     */
@@ -78,6 +83,7 @@ class Controller
 //    {
 //        return $this->enableLayout();
 //    }
+
 //    /**
 //     * @return null|\Zend_Layout
 //     * @throws \Zend_Controller_Action_Exception
@@ -93,6 +99,7 @@ class Controller
 //        $layout->setViewSuffix(\Pimcore\View::getViewScriptSuffix());
 //        return $layout;
 //    }
+
 //    /**
 //     *
 //     */
@@ -103,6 +110,7 @@ class Controller
 //            $layout->disableLayout();
 //        }
 //    }
+
 //    /**
 //     * @param $name
 //     * @return $this
@@ -115,6 +123,7 @@ class Controller
 //        }
 //        return $this;
 //    }
+
 //    /**
 //     *
 //     */
@@ -122,6 +131,7 @@ class Controller
 //    {
 //        $this->_helper->viewRenderer->setNoRender();
 //    }
+
 //    /**
 //     * @param $path
 //     * @return bool
@@ -135,6 +145,7 @@ class Controller
 //            }
 //        }
 //    }
+
 //    /**
 //     *
 //     */
@@ -144,6 +155,7 @@ class Controller
 //            $this->_helper->viewRenderer->setResponseSegment($this->getParam("_segment"));
 //        }
 //    }
+
     public static function dashesToCamelCase($string, $capitalizeFirstCharacter = true)
     {
         $str = str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
@@ -165,8 +177,21 @@ class Controller
         p_r('Controller: ' . $controllerName);
         p_r('Action: ' . $actionName);
 
-//        $controller = new \Website\Controller\ProjectsController();
-//        $controller->listAction();
-    }
+        if ($controllerName = 'ProjectController') {
+            $controller = new \Website\Controller\ProjectsController();
 
+            if ($actionName = 'listAction') {
+                $controller->listAction();
+            }elseif ($actionName = 'addAction'){
+            $controller->addAction();
+            }elseif ($actionName = 'editAction'){
+                $controller->editAction();
+            }elseif ($actionName = 'detailAction'){
+                $controller->detailAction();
+            }
+        } else {
+            echo 'Sorry, wir konnten keine Seite finden.';
+        }
+
+    }
 }

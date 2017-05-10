@@ -40,28 +40,28 @@ class Ellimac
             });
 
             // will result in '/projects/new'
-            $router->get('/new', function() {
+            $router->get('/add', function() {
                 $controller = new \Ellimac\Controller();
                 $controller->setRoute([
                     'controller' => 'projects',
-                    'action' => 'new'
+                    'action' => 'add'
                 ]);
             });
 
             // will result in '/projects/id'
             $router->get('/(\d+)', function($id) {
-//                self::setRoute([
-//                    'controller' => 'projects',
-//                    'action' => 'detail'
-//                ]);
+                self::setRoute([
+                    'controller' => 'projects',
+                    'action' => 'detail'
+                ]);
             });
 
             // will result in '/projects/id/edit'
             $router->get('/(\d+)/edit', function($id) {
-//                self::setRoute([
-//                    'controller' => 'projects',
-//                    'action' => 'edit'
-//                ]);
+                self::setRoute([
+                    'controller' => 'projects',
+                    'action' => 'edit'
+                ]);
             });
 
         });
