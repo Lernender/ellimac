@@ -2,10 +2,10 @@
 
 namespace Website\Controller;
 
-use Ellimac\Controller;
+use Website\Controller\Action;
 use Ellimac\Model\Database;
 
-class ProjectsController extends Controller
+class ProjectsController extends Action
 {
 
     //TODO: Projekt-Controller schreiben
