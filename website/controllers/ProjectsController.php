@@ -1,7 +1,5 @@
 <?php
 
-namespace Website\Controller;
-
 use Website\Controller\Action;
 use Ellimac\Model\Database;
 

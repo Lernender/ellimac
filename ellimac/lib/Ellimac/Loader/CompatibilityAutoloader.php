@@ -13,8 +13,6 @@ namespace Ellimac\Loader;
 
 use Ellimac\Tool;
 
-use Website\Controller\ProjectsController;
-
 class CompatibilityAutoloader
 {
     /**
@@ -119,7 +117,6 @@ class CompatibilityAutoloader
                 }
             }
         }
-//        p_r($class);die;
     }
     /**
      * Registers this instance as an autoloader.

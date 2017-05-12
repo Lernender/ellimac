@@ -20,7 +20,7 @@ if (!defined("ELLIMAC_DOCUMENT_ROOT")) {
 }
 
 if (!defined("ELLIMAC_FRONTEND_MODULE")) {
-    define("ELLIMAC_FRONTEND_MODULE", "website");
+    define("ELLIMAC_FRONTEND_MODULE", "/website");
 }
 
 if (!defined("ELLIMAC_PATH")) {
@@ -39,6 +39,10 @@ if (!defined("ELLIMAC_CONFIGURATION_DIRECTORY")) {
     define("ELLIMAC_CONFIGURATION_DIRECTORY", ELLIMAC_WEBSITE_VAR . "/config");
 }
 
+if (!defined("ELLIMAC_WEBSITE_LIB")) {
+    define("ELLIMAC_WEBSITE_LIB", ELLIMAC_WEBSITE_PATH . "/lib");
+}
+
 // setup include paths
 $includePaths = [
     ELLIMAC_PATH . "/lib",
@@ -51,7 +55,7 @@ include(dirname(__FILE__) . "/helper.php");
 
 // setup zend framework and ellimac
 require_once ELLIMAC_PATH . "/lib/Ellimac.php";
-require_once ELLIMAC_PATH . "/lib/Ellimac/Loader/Autoloader.php";
+require_once ELLIMAC_PATH . "/lib/Zend/Loader/Autoloader.php";
 $loader = require ELLIMAC_DOCUMENT_ROOT . "/vendor/autoload.php";
 
 $autoloader = \Zend_Loader_Autoloader::getInstance();
