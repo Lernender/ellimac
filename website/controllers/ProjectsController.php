@@ -9,11 +9,15 @@ class ProjectsController extends Action
     //TODO: Projekt-Controller schreiben
     public static function listAction()
     {
+        use Ellimac\Model\Client
         echo 'Hallo';
         // Logik für Projekt-Liste
 
         // 1. Befehl: Hole mir alle Projekte (Liste) vom Model
-
+        $get = new Client();
+        $set = $get->getName();
+        return $set;
+        
         // 2. Befehl: Übergebe alle Projekte ans View
 
         // Inhalt für Model

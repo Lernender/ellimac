@@ -98,12 +98,5 @@ class Client
         $this->city = $city;
     }
 
-
-
-    function __toString()
-    {
-       return 'foofoo';
-    }
-
 }
 //TODO: Model fertig stellen
