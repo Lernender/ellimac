@@ -74,29 +74,4 @@ abstract class Frontend extends Action
             }
         }
     }
-
-    /**
-     * @param null $action
-     * @param null $name
-     * @param bool $noController
-     */
-    public function render($action = null, $name = null, $noController = false)
-    {
-        if (!$this->viewRendered) {
-            $this->viewRendered = true;
-            parent::render($action, $name, $noController);
-        }
-    }
-
-    /**
-     * @param string $script
-     * @param null $name
-     */
-    public function renderScript($script, $name = null)
-    {
-        if (!$this->viewRendered) {
-            $this->viewRendered = true;
-            parent::renderScript($script, $name);
-        }
-    }
 }

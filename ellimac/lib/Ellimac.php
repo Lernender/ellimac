@@ -52,7 +52,8 @@ class Ellimac
 
             // will result in '/projects/id'
             $router->get('/(\d+)', function($id) {
-                self::setRoute([
+                $controller = new \Ellimac\Controller();
+                $controller->setRoute([
                     'controller' => 'projects',
                     'action' => 'detail',
                     'params' => ['id' => $id]
@@ -61,7 +62,8 @@ class Ellimac
 
             // will result in '/projects/id/edit'
             $router->get('/(\d+)/edit', function($id) {
-                self::setRoute([
+                $controller = new \Ellimac\Controller();
+                $controller->setRoute([
                     'controller' => 'projects',
                     'action' => 'edit',
                     'params' => ['id' => $id]

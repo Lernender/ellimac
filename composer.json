@@ -11,7 +11,9 @@
             "role": "Developer"
         }
     ],
-    "require": {},
+    "require": {
+        "twig/twig": "^2.0"
+    },
     "autoload": {
         "psr-4": {
             "Ellimac\\Model\\": "ellimac/models",

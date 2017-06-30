@@ -168,52 +168,19 @@ class Controller
 
     public function setRoute($route)
     {
-        // TODO: Sicheres Parsing der Parameter
+        // Sicheres Parsing der Parameter
         $controllerName = self::dashesToCamelCase($route['controller']) . 'Controller';
         $actionName = self::dashesToCamelCase($route['action'], false) . 'Action';
         $params = $route['params'];
 
-        //TODO: Aufruf des Controllers und der Action
-        p_r('Controller: ' . $controllerName);
-        p_r('Action: ' . $actionName);
-        p_r('Params: ' . $params);
+        // TODO: Lade Controller dynamisch
+        require_once "website/controllers/$controllerName.php";
+        $controller = new \ProjectsController($params);
 
-//        if ($controllerName = 'ProjectController') {
-//            $controller = new \Website\Controller\ProjectsController();
-//
-//            if ($actionName = 'listAction') {
-//                $controller->listAction();
-//            }elseif ($actionName = 'addAction'){
-//            $controller->addAction();
-//            }elseif ($actionName = 'editAction'){
-//                $controller->editAction();
-//            }elseif ($actionName = 'detailAction'){
-//                $controller->detailAction();
-//            }
-//        } else {
-//            echo 'Sorry, wir konnten keine Seite finden.';
-//        }
-
-        if ($controllerName = 'ProjectController') {
-            $controller = new ProjectsController();
-            switch ($actionName){
-                case 'listAction':
-                    $controller->listAction();
-                    break;
-                case 'addAction':
-                    $controller->addAction();
-                    break;
-                case 'editAction':
-                    $controller->editAction();
-                    break;
-                case 'detailAction':
-                    $controller->detailAction();
-                    break;
-            }
+        if (is_object($controller)) {
+            echo $controller->{$actionName}();
         } else {
             echo 'Sorry, wir konnten keine Seite finden.';
         }
-
-
     }
 }

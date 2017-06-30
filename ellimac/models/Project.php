@@ -15,22 +15,23 @@ class Project
 {
     private $name;
     private $url;
-    private $sta;
+    private $status;
 
     /**
-     * ProjectModel constructor.
-     * @param $name from project
-     * @param $url from project
+     * Project constructor.
+     * @param $name
+     * @param $url
+     * @param $status
      */
-    public function __construct($name, $url, $sta)
+    public function __construct($name, $url, $status)
     {
         $this->name = $name;
         $this->url = $url;
-        $this->sta = $sta
+        $this->status = $status;
     }
 
     /**
-     * @return name from project
+     * @return mixed
      */
     public function getName()
     {
@@ -38,7 +39,7 @@ class Project
     }
 
     /**
-     * @param set name from project
+     * @param mixed $name
      */
     public function setName($name)
     {
@@ -46,7 +47,7 @@ class Project
     }
 
     /**
-     * @return url from project
+     * @return mixed
      */
     public function getUrl()
     {
@@ -54,7 +55,7 @@ class Project
     }
 
     /**
-     * @param set url from project
+     * @param mixed $url
      */
     public function setUrl($url)
     {
@@ -62,18 +63,18 @@ class Project
     }
 
     /**
-     * @return stade from project
+     * @return mixed
      */
-    public function getSta()
+    public function getStatus()
     {
-        return $this->sta;
+        return $this->status;
     }
 
-    public function setSta($sta)
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
     {
-        $this->sta = $sta;
+        $this->status = $status;
     }
-
 }
-
-//TODO: Model fertig stellen
