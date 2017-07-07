@@ -109,23 +109,23 @@ h6 {
     margin: 20px;
 }
 
-.cp-lable-kein-status {
+.cp-label-offered {
     background: magenta none repeat scroll 0 0;
 }
 
-.cp-lable-testing-phase {
+.cp-label-testing-phase {
     background: green none repeat scroll 0 0;
 }
 
-.cp-lable-in-bearbeitung {
+.cp-label-in-process {
     background: red none repeat scroll 0 0;
 }
 
-.cp-lable-abgeschlossen {
+.cp-label-finished {
     background: orange none repeat scroll 0 0;
 }
 
-.cp-lable-neusatz {
+.cp-label-new {
     background: blue none repeat scroll 0 0;
 }
 

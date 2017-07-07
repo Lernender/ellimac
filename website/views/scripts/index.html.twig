@@ -24,14 +24,20 @@
                 {#<?php// include_once('../controllers/projects.php'); ?>
                 <?php var_dump($projectData);die; ?>
                 <?php foreach ($projectData as $project): ?>#}
-                <div>
-                    <div class="cp-padding cp-button uk-card uk-card-default uk-card-body uk-card-hover">
-                        <!--Status/Label aus DB importieren-->
-                        <span class="uk-label uk-label-success uk-position-top-right cp-label cp-lable-abgeschlossen">Abgeschlossen</span>
-                        <div class="cp-bold uk-margin-top">{#<?=$project['name']; ?>#}</div>
-                        <div>{#<?=$project['url']; ?>#}</div>
+
+                {% for project in projects %}
+                    <div>
+                        <div class="cp-padding cp-button uk-card uk-card-default uk-card-body uk-card-hover">
+                            <a href="/projects/{{ project.pro_id }}" class="uk-position-cover"></a>
+                                <!--Status/Label aus DB importieren-->
+                                <span class="uk-label uk-position-top-right cp-label cp-label-{{ project.sta_label }}">{{ project.sta_name }}</span>
+                                <div class="cp-bold uk-margin-top">{{ project.pro_name }}</div>
+                                <div>{{ project.pro_url }}</div>
+
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
+
                 {#<?php endforeach;?>#}
             </div>
         </div>

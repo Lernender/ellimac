@@ -24,8 +24,6 @@ class Database
     {
         $config = Config::getSystemConfig();
 
-        p_r($config->database);
-
         if (!isset($this->connection)) {
             $this->connection = new \mysqli($config->database->host, $config->database->username, $config->database->password, $config->database->dbname);
         }

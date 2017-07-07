@@ -11,31 +11,31 @@
                     <div class="uk-width-5-6@m" data-uk-grid>
 
                         <div class="uk-width-1@m uk-margin-remove-bottom">
-                            <div class="cp-bold cp-blue cp-title"><?php echo $cliName; ?><span
-                                        class="uk-label uk-label-success cp-label uk-margin-remove-top uk-margin-remove-bottom">Abgeschlossen</span>
+                            <div class="cp-bold cp-blue cp-title">{{ project.pro_name }}
+                                <span class="uk-label cp-label cp-label-{{ project.sta_label }} uk-margin-remove-top uk-margin-remove-bottom">{{ project.sta_name }}</span>
                             </div>
                         </div>
                         <div class="uk-width-1@m uk-margin-small-top">
-                            <h6><?php echo $cliURL; ?></h6>
+                            <h6>{{ project.pro_url }}</h6>
                         </div>
 
                         <div class="uk-width-1-6@m">
                             <div class="cp-blue cp-bold">Kundeninfo</div>
                         </div>
                         <div class="uk-width-5-6@m">
-                            <div class="cp-bold"><?php echo $cliName; ?></div>
+                            <div class="cp-bold">{{ project.cli_name }}</div>
                         </div>
                         <div class="uk-width-1-6@m  uk-margin-top">
                             <div></div>
                         </div>
                         <div class="uk-width-5-6@m  uk-margin-top">
-                            <div class="cp-bold"><?php echo $cliAddres; ?></div>
+                            <div class="cp-bold">{{ project.cli_address }}</div>
                         </div>
                         <div class="uk-width-1-6@m  uk-margin-top">
                             <div></div>
                         </div>
                         <div class="uk-width-5-6@m  uk-margin-top">
-                            <div class="cp-bold"><?php echo $cliZip . $cliCity; ?></div>
+                            <div class="cp-bold">{{ project.cli_zipCode }} {{ project.cli_city }}</div>
                         </div>
 
 
@@ -43,13 +43,13 @@
                             <div class="cp-bold cp-blue"> All. Info</div>
                         </div>
                         <div class="uk-width-5-6@m uk-margin-top-large">
-                            <div class="cp-bold"><?php echo $cliPartner; ?></div>
+                            <div class="cp-bold">{{ project.par_name }}</div>
                         </div>
                         <div class="uk-width-1-6@m uk-margin-top">
                             <div></div>
                         </div>
                         <div class="uk-width-5-6@m uk-margin-top">
-                            <div class="cp-bold"><?php echo $cliServer; ?></div>
+                            <div class="cp-bold">{{ project.ser_name }}</div>
                         </div>
 
                         <div class="uk-width-1-6@m uk-margin-top-large">
@@ -103,7 +103,7 @@
                     <div class="uk-width-1-6@m">
 
                         <div class="uk-width-1@m uk-margin-remove-bottom">
-                            <a href="./edit" class="cp-button uk-button uk-card-default uk-card-hover uk-button-small uk-align-right uk-margin-small-bottom">
+                            <a href="/projects/{{ project.pro_id }}/edit" class="cp-button uk-button uk-card-default uk-card-hover uk-button-small uk-align-right uk-margin-small-bottom">
                                 Bearbeiten
                             </a>
                         </div>
