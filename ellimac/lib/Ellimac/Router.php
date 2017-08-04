@@ -54,6 +54,7 @@ class Router
     {
         $pattern = $this->baseRoute . '/' . trim($pattern, '/');
         $pattern = $this->baseRoute ? rtrim($pattern, '/') : $pattern;
+
         foreach (explode('|', $methods) as $method) {
             $this->beforeRoutes[$method][] = array(
                 'pattern' => $pattern,
@@ -71,6 +72,7 @@ class Router
      */
     public function match($methods, $pattern, $fn)
     {
+
         $pattern = $this->baseRoute . '/' . trim($pattern, '/');
         $pattern = $this->baseRoute ? rtrim($pattern, '/') : $pattern;
         foreach (explode('|', $methods) as $method) {
@@ -89,7 +91,7 @@ class Router
      */
     public function all($pattern, $fn)
     {
-        $this->match('GET|POST|PUT|DELETE|OPTIONS|PATCH|HEAD', $pattern, $fn);
+        $this->match('POST|GET|PUT|DELETE|OPTIONS|PATCH|HEAD', $pattern, $fn);
     }
 
     /**
@@ -111,6 +113,7 @@ class Router
      */
     public function post($pattern, $fn)
     {
+        p_r('post');
         $this->match('POST', $pattern, $fn);
     }
 
@@ -212,6 +215,7 @@ class Router
             ob_start();
             $method = 'GET';
         } // If it's a POST request, check for a method override header
+
         elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $headers = $this->getRequestHeaders();
             if (isset($headers['X-HTTP-Method-Override']) && in_array($headers['X-HTTP-Method-Override'], array('PUT', 'DELETE', 'PATCH'))) {
@@ -232,8 +236,11 @@ class Router
         // Define which method we need to handle
         $this->requestedMethod = $this->getRequestMethod();
 
+
+
         // Handle all before middlewares
         if (isset($this->beforeRoutes[$this->requestedMethod])) {
+
             $this->handle($this->beforeRoutes[$this->requestedMethod]);
         }
 
@@ -249,7 +256,7 @@ class Router
                 call_user_func($this->notFoundCallback);
             } else {
                 header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
-                echo '404';
+                echo 'Nice try Camille :)';
             }
         } // If a route was handled, perform the finish callback (if any)
         else {
@@ -288,23 +295,29 @@ class Router
      */
     private function handle($routes, $quitAfterRun = false)
     {
+
         // Counter to keep track of the number of routes we've handled
         $numHandled = 0;
         // The current page URL
         $uri = $this->getCurrentUri();
+
         // Loop all routes
         foreach ($routes as $route) {
+
             // we have a match!
             if (preg_match_all('#^' . $route['pattern'] . '$#', $uri, $matches, PREG_OFFSET_CAPTURE)) {
+
                 // Rework matches to only contain the matches, not the orig string
                 $matches = array_slice($matches, 1);
                 // Extract the matched URL parameters (and only the parameters)
                 $params = array_map(function ($match, $index) use ($matches) {
                     // We have a following parameter: take the substring from the current param position until the next one's position (thank you PREG_OFFSET_CAPTURE)
                     if (isset($matches[$index + 1]) && isset($matches[$index + 1][0]) && is_array($matches[$index + 1][0])) {
+
                         return trim(substr($match[0][0], 0, $matches[$index + 1][0][1] - $match[0][1]), '/');
                     } // We have no following parameters: return the whole lot
                     else {
+
                         return (isset($match[0][0]) ? trim($match[0][0], '/') : null);
                     }
                 }, $matches, array_keys($matches));
@@ -324,13 +337,17 @@ class Router
                         }
                     }
                 }
+
                 $numHandled++;
                 // If we need to quit, then quit
                 if ($quitAfterRun) {
                     break;
                 }
+
             }
         }
+
+
         // Return the number of routes handled
         return $numHandled;
     }

@@ -1,48 +1,38 @@
 {% extends "layout/layout.html.twig" %}
 
 {% block content %}
+<section class="uk-padding uk-padding-remove-horizontal">
+    <div class="uk-container">
+        <p data-uk-margin>
+            <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small">Alle</button>
+            <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small">Kein Status</button>
+            <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small">Neusatz</button>
+            <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small">In Bearbeitung</button>
+            <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small">Testing-Phase</button>
+            <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small">Abgeschlossen</button>
+            <a href="/projects/add" class="cp-button cp-button-new uk-button uk-card-default uk-card-hover uk-button-small uk-align-right">Neues Projekt erstellen</a>
+        </p>
+    </div>
+</section>
 
-<main class="main-content" data-uk-height-viewport="expand: true">
+<section>
+    <div class="uk-container">
+        <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m " data-uk-grid>
+            {% for project in projects %}
+                <div>
+                    <div class="cp-padding cp-button uk-card uk-card-default uk-card-body uk-card-hover">
+                        <a href="/projects/{{ project.pro_id }}" class="uk-position-cover"></a>
+                            <!--Status/Label aus DB importieren-->
+                            <span class="uk-label uk-position-top-right cp-label cp-label-{{ project.sta_label }}">{{ project.sta_name }}</span>
+                            <div class="cp-bold uk-margin-top">{{ project.pro_name }}</div>
+                            <div>{{ project.pro_url }}</div>
 
-    <section class="uk-padding uk-padding-remove-horizontal">
-        <div class="uk-container">
-            <p data-uk-margin>
-                <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small">Alle</button>
-                <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small">Kein Status</button>
-                <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small">Neusatz</button>
-                <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small">In Bearbeitung</button>
-                <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small">Testing-Phase</button>
-                <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small">Abgeschlossen</button>
-                <a href="/projects/add" class="cp-button cp-button-new uk-button uk-card-default uk-card-hover uk-button-small uk-align-right">Neues Projekt erstellen</a>
-            </p>
-        </div>
-    </section>
-
-    <section>
-        <div class="uk-container">
-            <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m " data-uk-grid>
-                {#<?php// include_once('../controllers/projects.php'); ?>
-                <?php var_dump($projectData);die; ?>
-                <?php foreach ($projectData as $project): ?>#}
-
-                {% for project in projects %}
-                    <div>
-                        <div class="cp-padding cp-button uk-card uk-card-default uk-card-body uk-card-hover">
-                            <a href="/projects/{{ project.pro_id }}" class="uk-position-cover"></a>
-                                <!--Status/Label aus DB importieren-->
-                                <span class="uk-label uk-position-top-right cp-label cp-label-{{ project.sta_label }}">{{ project.sta_name }}</span>
-                                <div class="cp-bold uk-margin-top">{{ project.pro_name }}</div>
-                                <div>{{ project.pro_url }}</div>
-
-                        </div>
                     </div>
-                {% endfor %}
-
-                {#<?php endforeach;?>#}
-            </div>
+                </div>
+            {% endfor %}
         </div>
-    </section>
-</main>
+    </div>
+</section>
 
 {% endblock %}
 
