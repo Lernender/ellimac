@@ -41,6 +41,7 @@ class ProjectsController extends Action
     public function addAction()
     {
         $db = new Database();
+
         $query = "INSERT INTO client (cli_name, cli_address, cli_zipCode, cli_city) VALUES ('" . $_POST["client"] . "', '" . $_POST["cli_address"] . "', '" . $_POST["cli_zipCode"] . "', '" . $_POST["cli_city"] . "')";
         $query .= "INSERT INTO project (pro_name, pro_url, cli_id, par_id, ser_id, sta_id) VALUES ('" . $_POST["project"] . "', '" . $_POST["pro_url"] . "', '" . $_POST["cli_id"] . "', '" . $_POST["par_id"] . "', '" . $_POST["ser_id"] . "', '" . $_POST["sta_id"] . "')";
 
@@ -59,7 +60,6 @@ class ProjectsController extends Action
         return $this->render('/scripts/new.html.twig', [
             'project' => $project[0]
         ]);
-
     }
 
     public function detailAction()
@@ -94,7 +94,7 @@ class ProjectsController extends Action
         // 2. Befehl: Übergeben diese Daten dem View
 
         // 3. Befehl: Speichere mir alle bearbeiteten Projekt-Daten in der Datenbank ab (via Model)
-        if (isset($_GET['save'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $changes = "ALTER TABLE project (pro_name, pro_url, cli_id, par_id, ser_id, sta_id) VALUES ('" . $_GET["project"] . "', '" . $_GET["pro_url"] . "', '" . $_GET["cli_id"] . "', '" . $_GET["par_id"] . "', '" . $_GET["ser_id"] . "', '" . $_GET["sta_id"] . "') WHERE pro_id = " . $this->params['id'];
             $change = $db->query($changes);
@@ -121,7 +121,7 @@ class ProjectsController extends Action
         return $this->render('/scripts/edit.html.twig', [
             'project' => $project[0],
             'request' => [
-                'path_info' => $_SERVER['REDIRECT_URL']
+                'path_info' => $_SERVER['REQUEST_URI']
             ]
         ]);
     }

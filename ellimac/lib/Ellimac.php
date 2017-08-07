@@ -41,7 +41,7 @@ class Ellimac
             });
 
             // will result in '/projects/new'
-            $router->get('/add', function() {
+            $router->match('GET|POST', '/add', function() {
                 $controller = new \Ellimac\Controller();
                 $controller->setRoute([
                     'controller' => 'projects',
@@ -61,7 +61,7 @@ class Ellimac
             });
 
             // will result in '/projects/id/edit'
-            $router->get('/(\d+)/edit', function($id) {
+            $router->match('GET|POST', '/(\d+)/edit', function($id) {
                 $controller = new \Ellimac\Controller();
                 $controller->setRoute([
                     'controller' => 'projects',

@@ -237,10 +237,8 @@ class Router
         $this->requestedMethod = $this->getRequestMethod();
 
 
-
         // Handle all before middlewares
         if (isset($this->beforeRoutes[$this->requestedMethod])) {
-
             $this->handle($this->beforeRoutes[$this->requestedMethod]);
         }
 
