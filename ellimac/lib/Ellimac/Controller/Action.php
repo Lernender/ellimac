@@ -109,7 +109,7 @@ class Action
      */
     protected function disableViewAutoRender()
     {
-        $this->_helper->viewRenderer->setNoRender();
+        $this->helper->viewRenderer->setNoRender();
     }
 
     /**
