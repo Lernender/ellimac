@@ -93,62 +93,60 @@ class Database
      */
     public function delete($table, $id)
     {
-        $query = 'DELETE FROM' . ' ' . $table . ' ' . 'WHERE id=' . $id;
+        $query = sprintf('DELETE FROM %s WHERE id = %s', $table, $id);
         $connection = $this->dbConnect();
         $result = $connection->query($query);
 
-        return $result;
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function update($project, $url, $cli, $par, $ser, $sta, $id)
     {
-        $update = "ALTER TABLE project (pro_name, pro_url, cli_id, par_id, ser_id, sta_id) VALUES ($project, $url, $cli, $par, $ser, $sta, $id)";
+        $update = "UPDATE project SET pro_name = $project, pro_url = $url, cli_id = $cli, par_id = $par, ser_id = $ser, sta_id = $sta) WHERE pro_id = $id";
         return $update;
     }
 
     public function add($client, $address, $zipCode, $city, $project, $url, $cli_id, $par_id, $ser_id, $sta_id)
     {
-        $new = 'INSERT INTO client (cli_name, cli_address, cli_zipCode, cli_city) VALUES ($client, $address, $zipCode, $city)';
-        $new .= 'INSERT INTO project (pro_name, pro_url, cli_id, par_id, ser_id, sta_id) VALUES ($project, $url, $cli_id, $par_id, $ser_id, $sta_id)';
-        return $new;
+        $query = "INSERT INTO client (cli_name, cli_address, cli_zipCode, cli_city) VALUES ($client, $address, $zipCode, $city)";
+        $query .= "INSERT INTO project (pro_name, pro_url, cli_id, par_id, ser_id, sta_id) VALUES ($project, $url, $cli_id, $par_id, $ser_id, $sta_id)";
+        $connection = $this->dbConnect();
+        $result = $connection->query($query);
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function search($id)
     {
-        $search = 'SELECT * FROM project LEFT OUTER JOIN state ON project.sta_id = state.sta_id LEFT OUTER JOIN client  ON project.cli_id = client.cli_id LEFT OUTER JOIN partner  ON project.par_id = partner.par_id LEFT OUTER JOIN server  ON project.ser_id = server.ser_id WHERE pro_id = ' . $id;
-        return $search;
-    }
+        $query = 'SELECT * FROM project LEFT OUTER JOIN state ON project.sta_id = state.sta_id LEFT OUTER JOIN client  ON project.cli_id = client.cli_id LEFT OUTER JOIN partner  ON project.par_id = partner.par_id LEFT OUTER JOIN server  ON project.ser_id = server.ser_id WHERE pro_id = ' . $id;
+        $connection = $this->dbConnect();
+        $result = $connection->query($query);
 
-    public function list()
-    {
-        $list = 'SELECT * FROM project LEFT OUTER JOIN state  ON project.sta_id = state.sta_id';
-        return $list;
-    }
-
-    public function redirectUpdate($url)
-    {
-        if (headers_sent()){
-            die($url . "true");
+        if ($result) {
+            return true;
         } else {
-            die($url . "false");
+            return false;
         }
     }
 
-    public function redirectDelete($url)
+    public function getlist()
     {
-        if (headers_sent()){
-            die($url . "true");
-        } else {
-            die($url . "false");
-        }
-    }
+        $query = 'SELECT * FROM project LEFT OUTER JOIN state  ON project.sta_id = state.sta_id';
+        $connection = $this->dbConnect();
+        $result = $connection->query($query);
 
-    public function redirectNew($url)
-    {
-        if (headers_sent()){
-            die($url . "true");
+        if ($result) {
+            return $result;
         } else {
-            die($url . "false");
+            return false;
         }
     }
 }

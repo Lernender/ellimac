@@ -2,7 +2,7 @@
 
 use Website\Controller\Action;
 use Ellimac\Model\Database;
-use Ellimac\Model\Project;
+use Ellimac\Router;
 
 class ProjectsController extends Action
 {
@@ -24,45 +24,39 @@ class ProjectsController extends Action
 
         // Logik für Projekt-Liste
         // 1. Befehl: Hole mir alle Projekte (Liste) vom Model
-        $list = $db->list();
+        $query = $db->getList();
 
         // 2. Befehl: Übergebe alle Projekte ans View
-        $projects = $db->select($list);
+//        $projects = $db->select($query);
 
         // Inhalt für Model
         return $this->render('/scripts/index.html.twig', [
-            'projects' => $projects
+            'projects' => $query
         ]);
     }
 
     public function addAction()
     {
-        $db = new Database();
-        $id = $_POST['pro_id'];
-
         // Logik für neues Projekt
-        // 1. Befehl: Hole mir alle relevanten Daten zu Erstellung eines neuen Projekts
+        $db = new Database();
+        $router = new Router();
 
-        // 2. Befehl: Übergeben diese Daten dem View
+        $url = $router->getCurrentUri();
 
+        // 1. Befehl: Übergeben die Daten dem View
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($_POST['saveNew']) {
-                $new = $db->add($_POST["client"], $_POST["cli_address"], $_POST["cli_zipCode"], $_POST["cli_city"], $_POST["project"], $_POST["pro_url"],  $_POST["cli_id"], $_POST["par_id"], $_POST["ser_id"], $_POST["sta_id"]);
-                $result = $db->query($new);
-
-//                p_r($result);echo "new";die;
-
-                if ($result) {
-                    $db->redirectNew($url . '?add=');
-                }
+                $result = $db->add($_POST["client"], $_POST["cli_address"], $_POST["cli_zipCode"], $_POST["cli_city"], $_POST["project"], $_POST["pro_url"],  $_POST["cli_id"], $_POST["par_id"], $_POST["ser_id"], $_POST["sta_id"]);
+                $db->query($result);
+                $this->redirect($url . '?add=true');
             } else {
-                echo 'Nice try Camille ;)'; die;
+                echo 'Nice try Camille ;)';die;
             }
         }
 
         // Inhalt für Model
         return $this->render('/scripts/new.html.twig', [
-            'project' => $project[$id]
+            'project' => $project[0]
         ]);
     }
 
@@ -74,10 +68,10 @@ class ProjectsController extends Action
 
         // Logik für Projekt-Detail
         // 1. Befehl: Hole mir alle Projekt-Daten
-        $search = $db->search($id);
+        $query = $db->search($id);
 
         // 2. Befehl: Übergeben diese Daten dem View
-        $project = $db->select($search);
+        $project = $db->select($query);
 
         // Inhalt für Model
         return $this->render('/scripts/details.html.twig', [
@@ -88,48 +82,35 @@ class ProjectsController extends Action
     public function editAction()
     {
         $db = new Database();
-        $router = new \Ellimac\Router();
-
-        $url = $router->getCurrentUri();
 
         $id = $this->params['id'];
 
-
         // Logik für Projekt bearbeiten
         // 1. Befehl: Hole mir alle Projekt-Daten
-        $search = $db->search($id);
-        $project = $db->select($search);
+        $query = $db->search($id);
+        $project = $db->select($query);
 
         // 2. Befehl: Übergeben diese Daten dem View
 
         // 3. Befehl: Speichere mir alle bearbeiteten Projekt-Daten in der Datenbank ab (via Model)
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if ($_POST['saveProject']) {
-                $id = $this->params['id'];
-
-                $changes = $db->update($_POST["project"], $_POST["pro_url"], $_POST["cli_id"], $_POST["par_id"], $_POST["sta_id"], $_POST["sta_id"], $id);
-                $result = $db->query($changes);
-
-//                p_r($result);echo "save";die;
+            if (isset($_POST['saveProject'])) {
+                $result = $db->update($_POST["project"], $_POST["pro_url"], $_POST["cli_id"], $_POST["par_id"], $_POST["sta_id"], $_POST["sta_id"], $id);
 
                 if ($result) {
-                   $db->redirectUpdate($url . '?update=');
-               }
-
-            } elseif ($_POST['deleteProject']) {
-                $id = $this->params['id'];
-
+                    $this->redirect("/projects/$id?update=true");
+                }
+            } elseif (isset($_POST['deleteProject'])) {
                 $result = $db->delete('projects', $id);
-//
-//                p_r($result);echo "delete";die;
 
                 if ($result) {
-                    $db->redirectDelete($url . '?delete=');
+                    $this->redirect('/projects?delete=true');
                 }
             } else {
                 echo "Nice try Camille :)"; die;
             }
         }
+
         // Inhalt für Model
         return $this->render('/scripts/edit.html.twig', [
             'project' => $project[0],
