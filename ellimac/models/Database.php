@@ -99,6 +99,58 @@ class Database
 
         return $result;
     }
+
+    public function update($project, $url, $cli, $par, $ser, $sta, $id)
+    {
+        $update = "ALTER TABLE project (pro_name, pro_url, cli_id, par_id, ser_id, sta_id) VALUES ($project, $url, $cli, $par, $ser, $sta, $id)";
+        return $update;
+    }
+
+    public function add($client, $address, $zipCode, $city, $project, $url, $cli_id, $par_id, $ser_id, $sta_id)
+    {
+        $new = 'INSERT INTO client (cli_name, cli_address, cli_zipCode, cli_city) VALUES ($client, $address, $zipCode, $city)';
+        $new .= 'INSERT INTO project (pro_name, pro_url, cli_id, par_id, ser_id, sta_id) VALUES ($project, $url, $cli_id, $par_id, $ser_id, $sta_id)';
+        return $new;
+    }
+
+    public function search($id)
+    {
+        $search = 'SELECT * FROM project LEFT OUTER JOIN state ON project.sta_id = state.sta_id LEFT OUTER JOIN client  ON project.cli_id = client.cli_id LEFT OUTER JOIN partner  ON project.par_id = partner.par_id LEFT OUTER JOIN server  ON project.ser_id = server.ser_id WHERE pro_id = ' . $id;
+        return $search;
+    }
+
+    public function list()
+    {
+        $list = 'SELECT * FROM project LEFT OUTER JOIN state  ON project.sta_id = state.sta_id';
+        return $list;
+    }
+
+    public function redirectUpdate($url)
+    {
+        if (headers_sent()){
+            die($url . "true");
+        } else {
+            die($url . "false");
+        }
+    }
+
+    public function redirectDelete($url)
+    {
+        if (headers_sent()){
+            die($url . "true");
+        } else {
+            die($url . "false");
+        }
+    }
+
+    public function redirectNew($url)
+    {
+        if (headers_sent()){
+            die($url . "true");
+        } else {
+            die($url . "false");
+        }
+    }
 }
 
 //TODO: Connection String

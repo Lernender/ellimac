@@ -81,7 +81,7 @@
                                 <option checked>bitte wählen</option>
                                 {% for partner in partners %}
                                     <option {#{% if project.par_id === project.pro_id ? 'selected' : '' %}#}>
-                                        {{ partner.name }} | {{ partner.city }}
+                                        {{ partner.par_name }} | {{ partner.par_city }}
                                     </option>
                                 {% endfor %}
                                 {#<?php foreach ($partnerData): ?>#}
@@ -100,7 +100,7 @@
                                 <option>bitte wählen</option>s
                                 {% for server in projects %}
                                     <option {#{% if object.server_id === server.id ? 'selected' : '' %}#}>
-                                        {{ server.server.ser_name }} | {{ server.server.ser_ip }}
+                                        {{ server.ser_name }} | {{ server.ser_ip }}
                                     </option>
                                 {% endfor %}
                                 {#<?php foreach ($servers as $server): ?>
@@ -111,15 +111,16 @@
                     </div>
                 </div>
 
+                {#TODO: Knöpfe rufen keine Action/Methode auf und erzwingen so das speichern und löschen nicht. Zudem rufen sie eine falsche Folgeseite auf.#}
                 <div class="uk-width-expand">
                     <div class="uk-width-1-1@m">
-                        <button class="cp-button uk-button uk-card-default uk-card-hover uk-button-small uk-align-right uk-margin-small-bottom">Speichern</button>
+                        <button name="saveProject" class="cp-button uk-button uk-card-default uk-card-hover uk-button-small uk-align-right uk-margin-small-bottom">Speichern</button>
                     </div>
                     <div class="uk-width-1-1@m">
                         <a href="/projects/{{ project.pro_id }}" class="cp-button uk-button uk-card-default uk-card-hover uk-button-small uk-align-right uk-margin-small-bottom">Abbrechen</a>
                     </div>
                     <div class="uk-width-1-1@m">
-                        <button name="delete" class="cp-button uk-button uk-card-default uk-card-hover uk-button-small uk-align-right uk-margin-small-bottoms">Löschen</button>
+                        <button name="deleteProject" class="cp-button uk-button uk-card-default uk-card-hover uk-button-small uk-align-right uk-margin-small-bottoms">Löschen</button>
                     </div>
                 </div>
 
