@@ -39,24 +39,25 @@ class ProjectsController extends Action
     {
         // Logik für neues Projekt
         $db = new Database();
-        $router = new Router();
-
-        $url = $router->getCurrentUri();
 
         // 1. Befehl: Übergeben die Daten dem View
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if ($_POST['saveNew']) {
-                $result = $db->add($_POST["client"], $_POST["cli_address"], $_POST["cli_zipCode"], $_POST["cli_city"], $_POST["project"], $_POST["pro_url"],  $_POST["cli_id"], $_POST["par_id"], $_POST["ser_id"], $_POST["sta_id"]);
-                $db->query($result);
-                $this->redirect($url . '?add=true');
+            if (isset($_POST['saveNew'])) {
+                $query = $db->addProject($_POST["client"], $_POST["cli_address"], $_POST["cli_zipCode"], $_POST["cli_city"], $_POST["project"], $_POST["pro_url"],  $_POST["par_id"], $_POST["ser_id"]);
+                p_r($query);
+
+                if ($query) {
+                    $this->redirect('projects?add=true');
+                }
             } else {
-                echo 'Nice try Camille ;)';die;
+                echo "Nice try Camille :)";
+                echo "saveNew went wrong!"; die;
             }
         }
 
         // Inhalt für Model
         return $this->render('/scripts/new.html.twig', [
-            'project' => $project[0]
+            'project' => $query[0]
         ]);
     }
 
@@ -68,14 +69,14 @@ class ProjectsController extends Action
 
         // Logik für Projekt-Detail
         // 1. Befehl: Hole mir alle Projekt-Daten
-        $query = $db->search($id);
+        $query = $db->getProject($id);
 
         // 2. Befehl: Übergeben diese Daten dem View
-        $project = $db->select($query);
+        //$project = $db->select($query);
 
         // Inhalt für Model
         return $this->render('/scripts/details.html.twig', [
-            'project' => $project[0]
+            'project' => $query[0]
         ]);
     }
 
@@ -87,18 +88,18 @@ class ProjectsController extends Action
 
         // Logik für Projekt bearbeiten
         // 1. Befehl: Hole mir alle Projekt-Daten
-        $query = $db->search($id);
-        $project = $db->select($query);
+        $query = $db->getProject($id);
 
         // 2. Befehl: Übergeben diese Daten dem View
 
         // 3. Befehl: Speichere mir alle bearbeiteten Projekt-Daten in der Datenbank ab (via Model)
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['saveProject'])) {
-                $result = $db->update($_POST["project"], $_POST["pro_url"], $_POST["cli_id"], $_POST["par_id"], $_POST["sta_id"], $_POST["sta_id"], $id);
+
+                $result = $db->update($_POST["project"], $_POST["pro_url"], $_POST["client"], $_POST["cli_address"], $_POST["cli_zipCode"], $_POST["cli_city"], $_POST["par_id"], $_POST["ser_id"], $id, $cli_id);
 
                 if ($result) {
-                    $this->redirect("/projects/$id?update=true");
+                   $this->redirect("projects" . $id . "?update=true");
                 }
             } elseif (isset($_POST['deleteProject'])) {
                 $result = $db->delete('projects', $id);
@@ -107,13 +108,14 @@ class ProjectsController extends Action
                     $this->redirect('/projects?delete=true');
                 }
             } else {
-                echo "Nice try Camille :)"; die;
+                echo "Nice try Camille :)";
+                echo "saveProject oder deleteProject went wrong!"; die;
             }
         }
 
         // Inhalt für Model
         return $this->render('/scripts/edit.html.twig', [
-            'project' => $project[0],
+            'project' => $query[0],
             'request' => [
                 'path_info' => $_SERVER['REQUEST_URI']
             ]

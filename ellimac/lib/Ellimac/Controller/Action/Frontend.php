@@ -75,9 +75,12 @@ abstract class Frontend extends Action
         }
     }
 
+    /**
+     * @param $url
+     * @param int $statusCode
+     */
     public function redirect($url, $statusCode = 303)
     {
         header('Location: ' . $url, true, $statusCode);
-        die();
     }
 }

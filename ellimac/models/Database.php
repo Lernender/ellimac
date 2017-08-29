@@ -104,16 +104,15 @@ class Database
         }
     }
 
-    public function update($project, $url, $cli, $par, $ser, $sta, $id)
+    public function update($project, $url, $cli, $cli_address, $cli_zipCode, $cli_city, $par, $ser, $id, $cli_id)
     {
-        $update = "UPDATE project SET pro_name = $project, pro_url = $url, cli_id = $cli, par_id = $par, ser_id = $ser, sta_id = $sta) WHERE pro_id = $id";
-        return $update;
-    }
+        $rows = [];
+        $query = "UPDATE project SET pro_name = '$project' WHERE pro_id = $id";
+//        , par_id = '$par', ser_id = '$ser'
+//UPDATE client SET cli_name = '$cli', cli_address = '$cli_address', cli_zipCode = '$cli_zipCode',cli_city = '$cli_city' WHERE cli_id = $cli_id";
 
-    public function add($client, $address, $zipCode, $city, $project, $url, $cli_id, $par_id, $ser_id, $sta_id)
-    {
-        $query = "INSERT INTO client (cli_name, cli_address, cli_zipCode, cli_city) VALUES ($client, $address, $zipCode, $city)";
-        $query .= "INSERT INTO project (pro_name, pro_url, cli_id, par_id, ser_id, sta_id) VALUES ($project, $url, $cli_id, $par_id, $ser_id, $sta_id)";
+        p_r($query);
+
         $connection = $this->dbConnect();
         $result = $connection->query($query);
 
@@ -124,14 +123,36 @@ class Database
         }
     }
 
-    public function search($id)
+    public function addProject($client, $address, $zipCode, $city, $project, $url, $par_id, $ser_id)
     {
-        $query = 'SELECT * FROM project LEFT OUTER JOIN state ON project.sta_id = state.sta_id LEFT OUTER JOIN client  ON project.cli_id = client.cli_id LEFT OUTER JOIN partner  ON project.par_id = partner.par_id LEFT OUTER JOIN server  ON project.ser_id = server.ser_id WHERE pro_id = ' . $id;
+        $query = "INSERT INTO client (cli_name, cli_address, cli_zipCode, cli_city) VALUES ($client, $address, $zipCode, $city); INSERT INTO project (pro_name, pro_url, par_id, ser_id) VALUES ($project, $url, $par_id, $ser_id)";
+
+        $connection = $this->dbConnect();
+        $result = $connection->query($query);
+
+        p_r($result);
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getProject($id)
+    {
+
+        $rows = [];
+        $query = 'SELECT * FROM project LEFT OUTER JOIN state ON project.sta_id = state.sta_id LEFT OUTER JOIN client  ON project.cli_id = client.cli_id LEFT OUTER JOIN partner ON project.par_id = partner.par_id LEFT OUTER JOIN server  ON project.ser_id = server.ser_id WHERE pro_id = ' . $id;
+
         $connection = $this->dbConnect();
         $result = $connection->query($query);
 
         if ($result) {
-            return true;
+            while ($row = $result->fetch_assoc()) {
+                $rows[] = $row;
+            }
+            return $rows;
         } else {
             return false;
         }

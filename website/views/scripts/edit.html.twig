@@ -16,7 +16,7 @@
                             <div class="cp-bold">Projektname</div>
                         </div>
                         <div class="uk-width-2-3@s">
-                            <input class="cp-text-input" type="text" name="project" value="{{ project.pro_name }}">
+                            <input name="project" type="text" title="project" class="cp-text-input" value="{{ project.pro_name }}">
                         </div>
 
                         <div class="uk-width-1-6@m uk-margin-top">
@@ -25,7 +25,7 @@
                             <div class="cp-bold">Projekt-URL</div>
                         </div>
                         <div class="uk-width-2-3@m uk-margin-top">
-                            <input class="cp-text-input" type="text" name="pro_url" value="{{ project.pro_url }}">
+                            <input  name="pro_url" type="text" title="pro_url" class="cp-text-input" value="{{ project.pro_url }}">
                         </div>
 
                         <div class="uk-width-1@m">
@@ -39,7 +39,7 @@
                             <div class="cp-bold">Kunde</div>
                         </div>
                         <div class="uk-width-2-3@m">
-                            <input class="cp-text-input" type="text" name="client" value="{{ project.cli_name }}">
+                            <input name="client" type="text" title="client" class="cp-text-input" value="{{ project.cli_name }}">
                         </div>
 
                         <div class="uk-width-1-6@m uk-margin-top">
@@ -50,7 +50,7 @@
                         </div>
                         {#$address = SELECT cli_address FROM client WHERE cli_id=$id#}
                         <div class="uk-width-2-3@m uk-margin-top">
-                            <input class="cp-text-input" type="text" name="cli_address" value="{{ project.cli_address }}">
+                            <input name="cli_address" type="text" title="cli_address" class="cp-text-input" value="{{ project.cli_address }}">
                         </div>
 
                         <div class="uk-width-1-6@m uk-margin-top">
@@ -61,8 +61,8 @@
                         </div>
                         <div class="uk-width-2-3@m uk-margin-top">
                             <div data-uk-grid>
-                                <div class="uk-width-1-3@m "><input class="cp-text-input" type="text" name="cli_zipCode" value="{{ project.cli_zipCode }}"></div>
-                                <div class="uk-width-2-3@m "><input class="cp-text-input" type="text" name="cli_city" value="{{ project.cli_city }}"></div>
+                                <div class="uk-width-1-3@m "><input name="cli_zipCode" type="text" title="cli_zipCode" class="cp-text-input" value="{{ project.cli_zipCode }}"></div>
+                                <div class="uk-width-2-3@m "><input name="cli_city" type="text" title="cli_city" class="cp-text-input" value="{{ project.cli_city }}"></div>
                             </div>
                         </div>
 
@@ -77,12 +77,14 @@
                             <div class="cp-bold">Partner</div>
                         </div>
                         <div class="uk-width-2-3@m">
-                            <select name="par_id" class="uk-select cp-select">
-                                <option checked>bitte wählen</option>
+                            <select name="par_id" title="par_id" class="uk-select cp-select">
+                                <option>bitte wählen</option>
                                 {% for partner in partners %}
-                                    <option {#{% if project.par_id === project.pro_id ? 'selected' : '' %}#}>
-                                        {{ partner.par_name }} | {{ partner.par_city }}
-                                    </option>
+                                    {% set selected = '' %}
+                                    {%  if (project.par_id) == project.par_id %}
+                                        {% set selected = 'selected' %}
+                                    {%  endif %}
+                                    <option value="{{ project.par_name }}" {{ selected }}>{{ project.par_name }}</option>
                                 {% endfor %}
                                 {#<?php foreach ($partnerData): ?>#}
                                     {#<option><?=$partnerDate; ?></option>#}
@@ -96,16 +98,15 @@
                             <div class="cp-bold">Server</div>
                         </div>
                         <div class="uk-width-2-3@m uk-margin-top">
-                            <select name="ser_id" class="uk-select cp-select">
+                            <select name="ser_id" title="ser_id" class="uk-select cp-select">
                                 <option>bitte wählen</option>s
-                                {% for server in projects %}
-                                    <option {#{% if object.server_id === server.id ? 'selected' : '' %}#}>
-                                        {{ server.ser_name }} | {{ server.ser_ip }}
-                                    </option>
+                                {% for server in servers %}
+                                    {% set selected = '' %}
+                                    {%  if (server.ser_id) == project.ser_id %}
+                                        {% set selected = 'selected' %}
+                                    {%  endif %}
+                                    <option value="{{ server.ser_name }}" {{ selected }}>{{ server.ser_name }}</option>
                                 {% endfor %}
-                                {#<?php foreach ($servers as $server): ?>
-                                    <option><?=$serverData; ?></option>
-                                <?php endforeach;?>#}
                             </select>
                         </div>
                     </div>
