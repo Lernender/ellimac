@@ -107,14 +107,37 @@ class Database
     public function update($project, $url, $cli, $cli_address, $cli_zipCode, $cli_city, $par, $ser, $id, $cli_id)
     {
         $rows = [];
-        $query = "UPDATE project SET pro_name = '$project' WHERE pro_id = $id";
-//        , par_id = '$par', ser_id = '$ser'
-//UPDATE client SET cli_name = '$cli', cli_address = '$cli_address', cli_zipCode = '$cli_zipCode',cli_city = '$cli_city' WHERE cli_id = $cli_id";
 
-        p_r($query);
+        $cli_id = "SELECT cli_id FROM project WHERE pro_id = " . $id;
+        $connection = $this->dbConnect();
+        $result = $connection->query($cli_id);
+        $query = $result->fetch_assoc();
+        $cli_id = $query['cli_id'];
+
+        $par_id = "SELECT par_id FROM project WHERE pro_id = " . $id;
+        $connection = $this->dbConnect();
+        $result = $connection->query($par_id);
+        $query = $result->fetch_assoc();
+        $par_id = $query['par_id'];
+
+        $ser_id = "SELECT ser_id FROM project WHERE pro_id = " . $id;
+        $connection = $this->dbConnect();
+        $result = $connection->query($ser_id);
+        $query = $result->fetch_assoc();
+        $ser_id = $query['ser_id'];
 
         $connection = $this->dbConnect();
+
+        $query = "UPDATE project SET pro_name = '$project', pro_url = '$url' WHERE pro_id = $id";
         $result = $connection->query($query);
+
+
+        $query = "UPDATE client SET cli_name = '$cli' , cli_address = '$cli_address', cli_zipCode = '$cli_zipCode',cli_city = '$cli_city' WHERE cli_id = " . $cli_id;
+        $result = $connection->query($query);
+
+
+
+//        , par_id = '$par', ser_id = '$ser'
 
         if ($result) {
             return true;
@@ -125,12 +148,12 @@ class Database
 
     public function addProject($client, $address, $zipCode, $city, $project, $url, $par_id, $ser_id)
     {
-        $query = "INSERT INTO client (cli_name, cli_address, cli_zipCode, cli_city) VALUES ($client, $address, $zipCode, $city); INSERT INTO project (pro_name, pro_url, par_id, ser_id) VALUES ($project, $url, $par_id, $ser_id)";
+//        $query = "INSERT INTO client (cli_name, cli_address, cli_zipCode, cli_city) VALUES ($client, $address, $zipCode, $city)";
+//        , par_id, ser_id
+        $query = "INSERT INTO project (pro_name, pro_url) VALUES ($project, $url)";
 
         $connection = $this->dbConnect();
         $result = $connection->query($query);
-
-        p_r($result);
 
         if ($result) {
             return true;

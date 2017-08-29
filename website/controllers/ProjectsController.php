@@ -44,10 +44,9 @@ class ProjectsController extends Action
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['saveNew'])) {
                 $query = $db->addProject($_POST["client"], $_POST["cli_address"], $_POST["cli_zipCode"], $_POST["cli_city"], $_POST["project"], $_POST["pro_url"],  $_POST["par_id"], $_POST["ser_id"]);
-                p_r($query);
 
                 if ($query) {
-                    $this->redirect('projects?add=true');
+                    $this->redirect('/projects?add=true');
                 }
             } else {
                 echo "Nice try Camille :)";
@@ -99,7 +98,7 @@ class ProjectsController extends Action
                 $result = $db->update($_POST["project"], $_POST["pro_url"], $_POST["client"], $_POST["cli_address"], $_POST["cli_zipCode"], $_POST["cli_city"], $_POST["par_id"], $_POST["ser_id"], $id, $cli_id);
 
                 if ($result) {
-                   $this->redirect("projects" . $id . "?update=true");
+                   $this->redirect("/projects/$id?update=true");
                 }
             } elseif (isset($_POST['deleteProject'])) {
                 $result = $db->delete('projects', $id);
