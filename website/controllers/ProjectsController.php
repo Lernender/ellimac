@@ -46,7 +46,7 @@ class ProjectsController extends Action
                 $query = $db->addProject($_POST["client"], $_POST["cli_address"], $_POST["cli_zipCode"], $_POST["cli_city"], $_POST["project"], $_POST["pro_url"],  $_POST["par_id"], $_POST["ser_id"]);
 
                 if ($query) {
-                    $this->redirect('/projects?add=true');
+                    $this->redirect("/projects/$pro_id?add=true");
                 }
             } else {
                 echo "Nice try Camille :)";
@@ -54,9 +54,15 @@ class ProjectsController extends Action
             }
         }
 
+        $partner = $db->getPartners();
+
+        $server = $db->getServer();
+
         // Inhalt für Model
         return $this->render('/scripts/new.html.twig', [
-            'project' => $query[0]
+            'project' => $query,
+            'partners' => $partner,
+            'servers' => $server
         ]);
     }
 
@@ -71,7 +77,6 @@ class ProjectsController extends Action
         $query = $db->getProject($id);
 
         // 2. Befehl: Übergeben diese Daten dem View
-        //$project = $db->select($query);
 
         // Inhalt für Model
         return $this->render('/scripts/details.html.twig', [
@@ -95,15 +100,15 @@ class ProjectsController extends Action
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['saveProject'])) {
 
-                $result = $db->update($_POST["project"], $_POST["pro_url"], $_POST["client"], $_POST["cli_address"], $_POST["cli_zipCode"], $_POST["cli_city"], $_POST["par_id"], $_POST["ser_id"], $id, $cli_id);
+                $result = $db->update($_POST["project"], $_POST["pro_url"], $_POST["client"], $_POST["cli_address"], $_POST["cli_zipCode"], $_POST["cli_city"], $_POST["par_id"], $_POST["ser_id"], $id);
 
                 if ($result) {
                    $this->redirect("/projects/$id?update=true");
                 }
             } elseif (isset($_POST['deleteProject'])) {
-                $result = $db->delete('projects', $id);
+                $result = $db->delete('project', $id);
 
-                if ($result) {
+                if ($result == '') {
                     $this->redirect('/projects?delete=true');
                 }
             } else {
@@ -112,12 +117,18 @@ class ProjectsController extends Action
             }
         }
 
+        $partner = $db->getPartners();
+
+        $server = $db->getServer();
+
         // Inhalt für Model
         return $this->render('/scripts/edit.html.twig', [
             'project' => $query[0],
             'request' => [
                 'path_info' => $_SERVER['REQUEST_URI']
-            ]
+            ],
+            'partners' => $partner,
+            'servers' => $server
         ]);
     }
 

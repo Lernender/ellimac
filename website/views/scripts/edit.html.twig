@@ -81,10 +81,10 @@
                                 <option>bitte wählen</option>
                                 {% for partner in partners %}
                                     {% set selected = '' %}
-                                    {%  if (project.par_id) == project.par_id %}
+                                    {%  if (partner.par_id) == project.par_id %}
                                         {% set selected = 'selected' %}
                                     {%  endif %}
-                                    <option value="{{ project.par_name }}" {{ selected }}>{{ project.par_name }}</option>
+                                    <option value="{{ partner.par_id }}" {{ selected }}>{{ partner.par_name }}</option>
                                 {% endfor %}
                                 {#<?php foreach ($partnerData): ?>#}
                                     {#<option><?=$partnerDate; ?></option>#}
@@ -105,7 +105,7 @@
                                     {%  if (server.ser_id) == project.ser_id %}
                                         {% set selected = 'selected' %}
                                     {%  endif %}
-                                    <option value="{{ server.ser_name }}" {{ selected }}>{{ server.ser_name }}</option>
+                                    <option value="{{ server.ser_id }}" {{ selected }}>{{ server.ser_name }} | {{ server.ser_ip }}</option>
                                 {% endfor %}
                             </select>
                         </div>

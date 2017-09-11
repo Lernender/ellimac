@@ -86,7 +86,7 @@
                                     {%  if (partner.par_id) == project.par_id %}
                                         {% set selected = 'selected' %}
                                     {%  endif %}
-                                    <option value="{{ partner.par_name }}" {{ selected }}>{{ partner.par_name }}</option>
+                                    <option name="{{ partner.par_id }}" value="{{ partner.par_name }}" {{ selected }}>{{ partner.par_name }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -104,7 +104,7 @@
                                     {%  if (server.ser_id) == project.ser_id %}
                                         {% set selected = 'selected' %}
                                     {%  endif %}
-                                    <option value="{{ server.ser_name }}" {{ selected }}>{{ server.ser_name }}</option>
+                                    <option name="{{ server.ser_id }}" value="{{ server.ser_name }}" {{ selected }}>{{ server.ser_name }} | {{ server.ser_ip }}</option>
                                 {% endfor %}
                             </select>
                         </div>
