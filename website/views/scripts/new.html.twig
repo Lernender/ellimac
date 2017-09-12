@@ -80,13 +80,9 @@
                         </div>
                         <div class="uk-width-2-3@m">
                             <select name="par_id" title="par_id" class="uk-select cp-select">
-                                <option checked>bitte wählen</option>
+                                <option>bitte wählen</option>
                                 {% for partner in partners %}
-                                    {% set selected = '' %}
-                                    {%  if (partner.par_id) == project.par_id %}
-                                        {% set selected = 'selected' %}
-                                    {%  endif %}
-                                    <option name="{{ partner.par_id }}" value="{{ partner.par_name }}" {{ selected }}>{{ partner.par_name }}</option>
+                                    <option value="{{ partner.par_id }}" {{ selected }}>{{ partner.par_name }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -98,13 +94,9 @@
                         </div>
                         <div class="uk-width-2-3@m uk-margin-top">
                             <select name="ser_id" title="ser_id" class="uk-select cp-select">
-                                <option>bitte wählen</option>
+                                <option>bitte wählen</option>s
                                 {% for server in servers %}
-                                    {% set selected = '' %}
-                                    {%  if (server.ser_id) == project.ser_id %}
-                                        {% set selected = 'selected' %}
-                                    {%  endif %}
-                                    <option name="{{ server.ser_id }}" value="{{ server.ser_name }}" {{ selected }}>{{ server.ser_name }} | {{ server.ser_ip }}</option>
+                                    <option value="{{ server.ser_id }}" {{ selected }}>{{ server.ser_name }} | {{ server.ser_ip }}</option>
                                 {% endfor %}
                             </select>
                         </div>

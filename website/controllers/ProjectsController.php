@@ -46,7 +46,7 @@ class ProjectsController extends Action
                 $query = $db->addProject($_POST["client"], $_POST["cli_address"], $_POST["cli_zipCode"], $_POST["cli_city"], $_POST["project"], $_POST["pro_url"],  $_POST["par_id"], $_POST["ser_id"]);
 
                 if ($query) {
-                    $this->redirect("/projects/$pro_id?add=true");
+                    $this->redirect("/projects/$idNewPro?add=true");
                 }
             } else {
                 echo "Nice try Camille :)";
@@ -108,8 +108,8 @@ class ProjectsController extends Action
             } elseif (isset($_POST['deleteProject'])) {
                 $result = $db->delete('project', $id);
 
-                if ($result == '') {
-                    $this->redirect('/projects?delete=true');
+                if ($result) {
+                    $this->redirect("/projects?delete=true");
                 }
             } else {
                 echo "Nice try Camille :)";
