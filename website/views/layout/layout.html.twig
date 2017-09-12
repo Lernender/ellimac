@@ -8,15 +8,21 @@
 <div class="wrapper">
     {% include 'layout/partials/header.html.twig' %}
 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/js/uikit.min.js"></script>
+
+    <script type="application/javascript" src="/website/static/js/formValidation/formValidation.popular.min.js"></script>
+    <script type="application/javascript" src="/website/static/js/formValidation/framework/uikit.min.js"></script>
+
+    <script type="application/javascript" src="/website/static/js/app.js"></script>
+
     <main class="main-content" data-uk-height-viewport="expand: true">
         {% block content %}{% endblock %}
     </main>
 
     {% include 'layout/partials/footer.html.twig' %}
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/js/uikit.min.js"></script>
-    <script type="text/javascript" src="/website/static/js/app.js"></script>
+
 </div>
 </body>
 </html>

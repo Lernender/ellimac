@@ -141,12 +141,19 @@ class Database
         $query = "INSERT INTO project (pro_name, pro_url, cli_id, par_id, ser_id, sta_id) VALUES ('$pro_name', '$pro_url', $last_id, $par, $ser, 4)";
         $result = $connection->query($query);
 
-        //$idNewPro = $connection->insert_id;
         if ($result) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public function getNewProject()
+    {
+        $connection = $this->dbConnect();
+
+        $id = $connection->insert_id;
+        return $id;
     }
 
     public function getProject($id)
@@ -170,7 +177,7 @@ class Database
 
     public function getlist()
     {
-        $query = 'SELECT * FROM project LEFT OUTER JOIN state  ON project.sta_id = state.sta_id';
+        $query = "SELECT * FROM project LEFT OUTER JOIN state  ON project.sta_id = state.sta_id ORDER BY (CASE project.sta_id WHEN 4 THEN 1 WHEN 1 THEN 2 WHEN 3 THEN 3 WHEN 5 THEN 4 WHEN 2 THEN 5 ELSE 100 END) ASC, pro_name DESC";
         $connection = $this->dbConnect();
         $result = $connection->query($query);
 

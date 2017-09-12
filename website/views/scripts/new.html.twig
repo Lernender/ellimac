@@ -3,7 +3,7 @@
 {% block content %}
 <section class="uk-padding uk-padding-remove-horizontal">
     <div class="uk-container">
-        <form method="post" action="{{ request.path_info }}" data-uk-grid>
+        <form id="contactForm" method="post" action="{{ request.path_info }}" data-uk-grid>
             <div data-uk-grid>
                 <div class="uk-width-5-6@s">
                     <div data-uk-grid>
@@ -11,19 +11,19 @@
                             <div class="cp-bold cp-blue">Projekt</div>
                         </div>
                         <div class="uk-width-1-6@m uk-width-1-3@s">
-                            <div class="cp-bold">Projektname</div>
+                            <div class="cp-bold control-label">Projektname</div>
                         </div>
                         <div class="uk-width-2-3@s">
-                            <input name="project" type="text" title="project" class="cp-text-input">
+                            <input name="project" type="text" title="project" class="cp-text-input form-control">
                         </div>
 
                         <div class="uk-width-1-6@m uk-margin-top">
                         </div>
                         <div class="uk-width-1-6@m uk-margin-top">
-                            <div class="cp-bold">Projekt-URL</div>
+                            <div class="cp-bold control-label">Projekt-URL</div>
                         </div>
                         <div class="uk-width-2-3@m uk-margin-top">
-                            <input name="pro_url" type="text" title="pro_url" class="cp-text-input">
+                            <input name="pro_url" type="text" title="pro_url" class="cp-text-input form-control">
                         </div>
 
                         <div class="uk-width-1@m">
@@ -34,36 +34,36 @@
                             <div class="cp-bold cp-blue">Kundeninfo</div>
                         </div>
                         <div class="uk-width-1-6@m">
-                            <div class="cp-bold">Kunde</div>
+                            <div class="cp-bold control-label">Kunde</div>
                         </div>
                         <div class="uk-width-2-3@m">
-                            <input name="client" type="text" title="client" class="cp-text-input">
+                            <input name="client" type="text" title="client" class="cp-text-input form-control">
                         </div>
 
                         <div class="uk-width-1-6@m uk-margin-top">
                             <div></div>
                         </div>
                         <div class="uk-width-1-6@m uk-margin-top">
-                            <div class="cp-bold">Adresse</div>
+                            <div class="cp-bold control-label">Adresse</div>
                         </div>
                         {#$address = SELECT cli_address FROM client WHERE cli_id=$id#}
                         <div class="uk-width-2-3@m uk-margin-top">
-                            <input name="cli_address" type="text" title="cli_address" class="cp-text-input">
+                            <input name="cli_address" type="text" title="cli_address" class="cp-text-input form-control">
                         </div>
 
                         <div class="uk-width-1-6@m uk-margin-top">
                             <div></div>
                         </div>
                         <div class="uk-width-1-6@m uk-margin-top">
-                            <div class="cp-bold">PLZ/Ort</div>
+                            <div class="cp-bold control-label">PLZ/Ort</div>
                         </div>
                         <div class="uk-width-2-3@m uk-margin-top">
                             <div data-uk-grid>
                                 <div class="uk-width-1-3@m">
-                                    <input name="cli_zipCode" type="text" title="cli_zipCode" class="cp-text-input">
+                                    <input name="cli_zipCode" type="text" title="cli_zipCode" class="cp-text-input form-control">
                                 </div>
                                 <div class="uk-width-2-3@m ">
-                                    <input name="cli_city" type="text" title="cli_city" class="cp-text-input">
+                                    <input name="cli_city" type="text" title="cli_city" class="cp-text-input form-control">
                                 </div>
                             </div>
                         </div>
@@ -76,11 +76,11 @@
                             <div class="cp-bold cp-blue">Allg. Info</div>
                         </div>
                         <div class="uk-width-1-6@m">
-                            <div class="cp-bold">Partner</div>
+                            <div class="cp-bold control-label">Partner</div>
                         </div>
                         <div class="uk-width-2-3@m">
-                            <select name="par_id" title="par_id" class="uk-select cp-select">
-                                <option>bitte wählen</option>
+                            <select name="par_id" title="par_id" class="uk-select cp-select form-control">
+                                <option value="">bitte wählen</option>
                                 {% for partner in partners %}
                                     <option value="{{ partner.par_id }}" {{ selected }}>{{ partner.par_name }}</option>
                                 {% endfor %}
@@ -90,11 +90,11 @@
                         <div class="uk-width-1-6@m uk-margin-top"></div>
 
                         <div class="uk-width-1-6@m uk-margin-top">
-                            <div class="cp-bold">Server</div>
+                            <div class="cp-bold control-label">Server</div>
                         </div>
                         <div class="uk-width-2-3@m uk-margin-top">
-                            <select name="ser_id" title="ser_id" class="uk-select cp-select">
-                                <option>bitte wählen</option>s
+                            <select name="ser_id" title="ser_id" class="uk-select cp-select form-control">
+                                <option value="">bitte wählen</option>
                                 {% for server in servers %}
                                     <option value="{{ server.ser_id }}" {{ selected }}>{{ server.ser_name }} | {{ server.ser_ip }}</option>
                                 {% endfor %}
@@ -104,7 +104,7 @@
                 </div>
                 <div class="uk-width-expand">
                     <div class="uk-width-1-1@m">
-                        <button name="saveNew" class="cp-button uk-button uk-card-default uk-card-hover uk-button-small uk-align-right uk-margin-small-bottom">Speichern</button>
+                        <button type="submit" name="saveNew" class="cp-button uk-button uk-card-default uk-card-hover uk-button-small uk-align-right uk-margin-small-bottom">Speichern</button>
                     </div>
 
                     <div class="uk-width-1-1@m">
@@ -115,5 +115,85 @@
         </form>
     </div>
 </section>
+
+<script>
+    $(document).ready(function() {
+        $('#contactForm')
+            .formValidation({
+                framework: 'uikit',
+                icon: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    project: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte tragen Sie einen Projekt-Namen ein.'
+                            }
+                        }
+                    },
+                    pro_url: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte tragen Sie die Projekt-URL ein.'
+                            },
+                            regexp: {
+                                message: 'Bitte tragen Sie eine gültige URL ein.',
+                                regexp: /^(http[s]?\:\/\/)?([w]{3}\.)?[\w\d\-]+\.[\w]+$/
+                            }
+                        }
+                    },
+                    client: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte tragen Sie den Kunden-Namen ein.'
+                            }
+                        }
+                    },
+                    cli_address: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte tragen Sie die Kunden-Adresse ein.'
+                            }
+                        }
+                    },
+                    cli_zipCode: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte tragen Sie eine PKZ ein.'
+                            },
+                            regexp: {
+                                message: 'Bitte tragen Sie eine gültige PLZ eintragen.',
+                                regexp: /^([0-9]{4})$/
+                            }
+                        }
+                    },
+                    cli_city: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte tragen Sie den Ort ein.'
+                            }
+                        }
+                    },
+                    par_id: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte wählen Sie einen Partner aus.'
+                            }
+                        }
+                    },
+                    ser_id: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte wählen Sie einen Server aus.'
+                            }
+                        }
+                    }
+                }
+            });
+    });
+</script>
 
 {% endblock %}

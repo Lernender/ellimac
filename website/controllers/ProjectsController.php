@@ -45,8 +45,9 @@ class ProjectsController extends Action
             if (isset($_POST['saveNew'])) {
                 $query = $db->addProject($_POST["client"], $_POST["cli_address"], $_POST["cli_zipCode"], $_POST["cli_city"], $_POST["project"], $_POST["pro_url"],  $_POST["par_id"], $_POST["ser_id"]);
 
+                $id = $db->getNewProject();
                 if ($query) {
-                    $this->redirect("/projects/$idNewPro?add=true");
+                    $this->redirect("/projects/$id?add=true");
                 }
             } else {
                 echo "Nice try Camille :)";
