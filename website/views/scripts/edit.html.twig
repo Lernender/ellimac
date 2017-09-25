@@ -3,9 +3,7 @@
 {% block content %}
 <section class="uk-padding uk-padding-remove-horizontal">
     <div class="uk-container">
-
-        <form method="post" action="{{ request.path_info }}" data-uk-grid>
-
+        <form id="contactForm" method="post" action="{{ request.path_info }}" data-uk-grid>
             <div data-uk-grid>
                 <div class="uk-width-5-6@s">
                     <div data-uk-grid>
@@ -127,7 +125,86 @@
     </div>
 </section>
 
-{% endblock %}
+<script>
+    $(document).ready(function() {
+        $('#contactForm')
+            .formValidation({
+                framework: 'uikit',
+                icon: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    project: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte tragen Sie einen Projekt-Namen ein.'
+                            }
+                        }
+                    },
+                    pro_url: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte tragen Sie die Projekt-URL ein.'
+                            },
+                            regexp: {
+                                message: 'Bitte tragen Sie eine gültige URL ein.',
+                                regexp: /^(http[s]?\:\/\/)?([w]{3}\.)?[\w\d\-]+\.[\w]+$/
+                            }
+                        }
+                    },
+                    client: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte tragen Sie den Kunden-Namen ein.'
+                            }
+                        }
+                    },
+                    cli_address: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte tragen Sie die Kunden-Adresse ein.'
+                            }
+                        }
+                    },
+                    cli_zipCode: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte tragen Sie eine PKZ ein.'
+                            },
+                            regexp: {
+                                message: 'Bitte tragen Sie eine gültige PLZ eintragen.',
+                                regexp: /^([0-9]{4})$/
+                            }
+                        }
+                    },
+                    cli_city: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte tragen Sie den Ort ein.'
+                            }
+                        }
+                    },
+                    par_id: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte wählen Sie einen Partner aus.'
+                            }
+                        }
+                    },
+                    ser_id: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Bitte wählen Sie einen Server aus.'
+                            }
+                        }
+                    }
+                }
+            });
+    });
+</script>
 
+{% endblock %}
 
 
